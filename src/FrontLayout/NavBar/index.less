@@ -1,0 +1,49 @@
+@import url('../../styles/index.less');
+.header {
+  padding-top: 30px;
+  overflow: hidden;
+  user-select: none;
+  .logo-container {
+    float: left;
+    display: flex;
+    cursor: pointer;
+    .logo {
+      width: 80px;
+      margin-right: 13px;
+      height: auto;
+    }
+    h3 {
+      font-size: 34px;
+      margin: 3px 0 3px 0;
+      color: @fc-1;
+    }
+    p {
+      font-size: 18px;
+      margin: 0;
+      color: @fc-1;
+    }
+  }
+  .search-container {
+    float: left;
+    margin-top: 5px;
+    margin-left: 100px;
+    .keyword-input {
+      width: 400px;
+      margin-bottom: 10px;
+      border: 1px solid rgb(17, 156, 236);
+      border-radius: 4px;
+    }
+    .el-input-group__append,
+    .el-input-group__prepend {
+      background-color: #78e9ab !important;
+      color: #455f94 !important;
+    }
+    .tag {
+      margin-right: 10px;
+    }
+  }
+  .operate-container {
+    float: right;
+    display: flex;
+  }
+}
