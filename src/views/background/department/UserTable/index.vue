@@ -41,9 +41,7 @@
             :min-width="item.minWidth"
           >
             <template #default="scope">
-              <el-tag type="success">{{
-                scope.row[item.prop] === 1 ? item.title.isFalse : item.title.isTrue
-              }}</el-tag>
+              <el-tag type="success">{{ scope.row.status === 1 ? '在职' : '离职' }}</el-tag>
             </template>
           </el-table-column>
         </template>
@@ -144,7 +142,7 @@ const queryUser = (formData) => {
 }
 //选项发生变化时触发 ,将超级管理员设置为禁止删除
 const selectable = (row) => {
- if (row.hasOwnProperty('role')) {
+  if (row.hasOwnProperty('role')) {
     return row.role.includes('超级管理员') ? false : true
   } else {
     return true

@@ -144,7 +144,7 @@ const queryUser = (formData) => {
 }
 //选项发生变化时触发 ,将超级管理员设置为禁止删除
 const selectable = (row) => {
- if (row.hasOwnProperty('role')) {
+  if (row.hasOwnProperty('role')) {
     return row.role.includes('超级管理员') ? false : true
   } else {
     return true

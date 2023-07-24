@@ -1,71 +1,67 @@
 <template>
   <div class="search">
     <el-form :model="searchForm" :inline="true" :rule="searchRule" ref="form">
-      <el-form-item prop="name">
-        <el-input
-          v-model="searchForm.name"
-          placeholder="姓名"
-          clearable="clearable"
-          max-length="10"
-          class="input"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-select
-          v-model="searchForm.sex"
-          placeholder="性别"
-          clearable="clearable"
-          max-length="10"
-          class="input"
-        >
-          <el-option label="男" value="男" />
-          <el-option label="女" value="女" />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-select
-          v-model="searchForm.roles"
-          placeholder="角色"
-          clearable="clearable"
-          max-length="10"
-          class="input"
-        >
-          <el-option
-            v-for="(role, index) in searchForm.rolesList"
-            :key="index"
-            :label="role.roleName"
-            :value="role.id"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-select
-          v-model="searchForm.dept"
-          placeholder="部门"
-          clearable="clearable"
-          max-length="10"
-          class="input"
-        >
-          <el-option
-            v-for="(dept, index) in searchForm.deptList"
-            :key="index"
-            :label="dept.deptName"
-            :value="dept.id"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-select
-          v-model="searchForm.status"
-          placeholder="状态"
-          clearable="clearable"
-          max-length="10"
-          class="input"
-        >
-          <el-option label="离职" value="0" />
-          <el-option label="在职" value="1" />
-        </el-select>
-      </el-form-item>
+      <template v-for="(item, index) in props.searchConfig.searchList" :key="index">
+        <el-form-item :prop="item.prop">
+          <template v-if="item.type === 'input'">
+            <el-input
+              v-model="searchForm[item.prop]"
+              :placeholder="item.placeholder"
+              clearable="clearable"
+              :max-length="item.maxlength"
+              :class="item.class"
+            />
+          </template>
+          <template v-if="item.type === 'selected'">
+            <el-select
+              v-model="searchForm[item.prop]"
+              :placeholder="item.placeholder"
+              clearable="clearable"
+              :max-length="item.maxlength"
+              :class="item.class"
+            >
+              <template v-for="(option, index) in item.options" :key="index">
+                <el-option :label="option.label" :value="option.value" />
+              </template>
+            </el-select>
+          </template>
+        </el-form-item>
+      </template>
+      <template v-if="searchConfig.pageName === 'user'">
+        <el-form-item>
+          <el-select
+            v-model="searchForm.roles"
+            placeholder="角色"
+            clearable="clearable"
+            max-length="10"
+            class="input"
+          >
+            <el-option
+              v-for="(role, index) in searchForm.rolesList"
+              :key="index"
+              :label="role.roleName"
+              :value="role.id"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-select
+            v-model="searchForm.dept"
+            placeholder="部门"
+            clearable="clearable"
+            max-length="10"
+            class="input"
+          >
+            <el-option
+              v-for="(dept, index) in searchForm.deptList"
+              :key="index"
+              :label="dept.deptName"
+              :value="dept.id"
+            />
+          </el-select>
+        </el-form-item>
+      </template>
+
       <el-form-item>
         <el-button type="primary" @click="queryData">查询</el-button>
         <el-button type="success" @click="addFn">新增</el-button>
@@ -83,6 +79,12 @@ import { useRouter } from 'vue-router'
 import type { FormInstance } from 'element-plus'
 const userStore = useUserStore()
 const emit = defineEmits(['queryUser', 'addUser'])
+const props = defineProps({
+  searchConfig: {
+    required: true
+  }
+})
+
 const { departLists, roleLists } = storeToRefs(userStore)
 const form = ref<FormInstance>()
 
@@ -136,7 +138,7 @@ const addFn = () => {
   emit('addUser')
 }
 //批量删除用户
-const moreDelete=()=>{
+const moreDelete = () => {
   emit('deleteUser')
 }
 getDeptmentList()
