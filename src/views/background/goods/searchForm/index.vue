@@ -44,16 +44,12 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="searchHandle()">查询</el-button>
-        <el-button
-          type="primary"
-          :disabled="!proxy.isAuth(['ROOT', 'GOODS:INSERT'])"
-          @click="addHandle()"
-        >
+        <el-button type="primary" :disabled="auth(['root', 'goods:insert'])" @click="addHandle()">
           新增
         </el-button>
         <el-button
           type="danger"
-          :disabled="!proxy.isAuth(['ROOT', 'GOODS:DELETE'])"
+          :disabled="auth(['root', 'goods:delete'])"
           @click="deleteHandle()"
         >
           批量删除
@@ -71,6 +67,7 @@
 </template>
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { auth } from '@/utils/auth.ts'
 const searchForm = reactive({
   comboName: null,
   comboCode: null,
@@ -88,5 +85,4 @@ const searchRule = reactive({
 </script>
 <style lang="less">
 @import url('./index.less');
-
 </style>

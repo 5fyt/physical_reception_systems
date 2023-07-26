@@ -1,9 +1,10 @@
 <template>
+  <search-form></search-form>
   <div class="goodsTable">
     <el-table
-      :data="tableData"
+      :data="tableData.dataList"
       @selection-change="handleSelectionChange"
-      v-loading="loading"
+      v-loading="tableData.loading"
       style="width: 100%"
       border
       :header-cell-style="{ backgroundColor: '#f1f3f4' }"
@@ -116,22 +117,25 @@
       />
     </div>
   </div>
+  <dialog-form></dialog-form>
 </template>
 <script setup lang="ts">
 import { reactive } from 'vue'
+import SearchForm from '../searchForm/index.vue'
+import DialogForm from '../dialogForm/index.vue'
 const tableData = reactive({
   loading: false,
   pageIndex: 1,
   pageSize: 10,
   totalCount: 0,
-  tableData: [],
+  dataList: [],
   selection: [] //选中行的数组
 })
+const handleSelectionChange = () => {}
 const handleCurrentChange = () => {}
 const selectable = () => {}
 const documentHandler = () => {}
 const handleSizeChange = () => {}
-const handleCurrentChange = () => {}
 </script>
 <style lang="less">
 @import url('./index.less');

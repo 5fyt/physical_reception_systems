@@ -1,0 +1,47 @@
+@import url('../../../../styles/index.less');
+.avatar-uploader .el-upload {
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  text-align: center;
+}
+.image {
+  width: 90px;
+  height: 90px;
+}
+.price {
+  width: 200px;
+}
+.desc {
+  margin-left: 20px;
+  font-size: 14px;
+  color: @fc-3;
+}
+
+.tag-row {
+  width: 100%;
+  .tag-input {
+    width: 50%;
+  }
+}
+.tags {
+  margin-top: 5px;
+}
+.item-row {
+  width: 100%;
+  margin-bottom: 18px;
+}
