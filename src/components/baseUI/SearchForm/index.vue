@@ -64,19 +64,38 @@
 
       <el-form-item>
         <el-button type="primary" @click="queryData">查询</el-button>
-        <el-button type="success" @click="addFn">新增</el-button>
-        <el-button type="danger" @click="moreDelete">批量删除</el-button>
+        <el-button
+          type="success"
+          @click="addFn"
+          v-if="
+            !auth(['root', 'user:insert']) ||
+            !auth(['root', 'role:insert']) ||
+            !auth(['root', 'department:insert'])
+          "
+          >新增</el-button
+        >
+        <el-button
+          type="danger"
+          @click="moreDelete"
+          v-if="
+            !auth(['root', 'user:delete']) ||
+            !auth(['root', 'role:delete']) ||
+            !auth(['root', 'department:delete'])
+          "
+          >批量删除</el-button
+        >
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script setup lang="ts">
 import { reactive, ref, onMounted, nextTick } from 'vue'
-import useUserStore from '@/stores/background/user/index.ts'
-import { objTransArrayObj } from '@/utils/translate.ts'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
+import useUserStore from '@/stores/background/user/index.ts'
 import type { FormInstance } from 'element-plus'
+import { objTransArrayObj } from '@/utils/translate.ts'
+import { auth } from '@/utils/auth.ts'
 const userStore = useUserStore()
 const emit = defineEmits(['queryUser', 'addUser'])
 const props = defineProps({

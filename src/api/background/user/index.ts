@@ -18,8 +18,8 @@ export const updateUser = (pageName:string,data: any, callback: Function) => {
   return request(`/${pageName}/update`, 'POST', data, false, callback)
 }
 //删除用户、部门、角色
-export const deleteUser = (pageName:string,data: string[], callback: Function) => {
-  return request(`/${pageName}/delete`, 'POST', data, true, callback)
+export const deleteUser = (pageName:string,data: number[], callback: Function) => {
+  return request(`/${pageName}/delete`, 'POST', data, false, callback)
 }
 //离职用户
 export const leaveUser = (id: any, callback: Function) => {

@@ -73,7 +73,9 @@ const dialogConfig = {
     {
       type: 'other',
       prop: 'department',
-      placeholder: '部门'
+      placeholder: '部门',
+      label:'部门',
+      rules:[{required:true,message:'部门不能为空',trigger:'blur'}]
     },
     {
       type: 'input',

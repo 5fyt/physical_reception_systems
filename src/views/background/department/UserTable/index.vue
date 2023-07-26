@@ -53,13 +53,19 @@
             :min-width="item.minWidth"
           >
             <template #default="scope">
-              <el-button type="primary" text @click="editHandle(scope.row)">修改</el-button>
+              <el-button
+                type="primary"
+                text
+                @click="editHandle(scope.row)"
+                :disabled="auth(['root', 'department:update'])"
+                >修改</el-button
+              >
               <el-button type="primary" v-if="item.btnShow" text @click="dismissHandle(scope.row)"
                 >离职</el-button
               >
               <el-button
                 type="danger"
-                :disabled="scope.row.role === '超级管理员'"
+                :disabled="scope.row.count > 0 || auth(['root', 'department:delete'])"
                 text
                 @click="deleteHandle(scope.row.id)"
                 >删除</el-button
@@ -104,12 +110,13 @@ import searchConfig from '../constant/search.config.ts'
 import dialogConfig from '../constant/dialog.config.ts'
 
 import useUserStore from '@/stores/background/user/index.ts'
+import { auth } from '@/utils/auth.ts'
 import { storeToRefs } from 'pinia'
 import { ElMessage, ElMessageBox } from 'element-plus'
 const userStore = useUserStore()
 const { users, total, pages } = storeToRefs(userStore)
 const dialogRef = ref()
-const uid = ref<string>('') //判断是否是新增还是修改dialog
+const id = ref<number>(0) //判断是否是新增还是修改dialog
 const dialogShow = ref(false)
 const deleteId = ref<array>([])
 interface tableType {
@@ -142,8 +149,8 @@ const queryUser = (formData) => {
 }
 //选项发生变化时触发 ,将超级管理员设置为禁止删除
 const selectable = (row) => {
-  if (row.hasOwnProperty('role')) {
-    return row.role.includes('超级管理员') ? false : true
+  if (row.hasOwnProperty('count')) {
+    return row.count > 0 ? false : true
   } else {
     return true
   }
@@ -153,9 +160,9 @@ const handleSelectionChange = (value) => {
   deleteId.value = value
 }
 //离职用户
-const dismissHandle = ({ uid }) => {
-  if (uid) {
-    userStore.leaveUsers(uid)
+const dismissHandle = ({ id }) => {
+  if (id) {
+    userStore.leaveUsers(id)
     tableDataLoad()
   }
 }
@@ -163,7 +170,7 @@ const dismissHandle = ({ uid }) => {
 //删除用户，批量删除和单个删除
 const deleteHandle = (id) => {
   //拿到一条或者多条id标识
-  let ids = id ? [id] : deleteId.value.map((item) => item.uid)
+  let ids = id ? [id] : deleteId.value.map((item) => item.id)
   if (!ids.length) {
     ElMessage({
       message: '未选中需要删除的用户',
@@ -176,10 +183,10 @@ const deleteHandle = (id) => {
       type: 'warning'
     })
       .then(() => {
-        let uids = {
-          uids: ids
+        let data = {
+          ids: ids
         }
-        userStore.deleteUsers(contentConfig.pageName, uids)
+        userStore.deleteUsers(contentConfig.pageName, data)
         tableDataLoad()
       })
       .catch(() => {

@@ -20,7 +20,7 @@ const useLoginStore = defineStore('login', {
           that.token = token
           that.permissions = permissions
           localStorage.setItem('token', that.token)
-          localStorage.setItem('permission', JSON.stringify(that.permissions))
+          localStorage.setItem('permissions', JSON.stringify(that.permissions))
           ElMessage({
             message: '登入成功',
             type: 'success',

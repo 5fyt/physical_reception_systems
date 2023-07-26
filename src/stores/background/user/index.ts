@@ -78,7 +78,7 @@ const useUserStore = defineStore('user', {
       updateUser(pageName,data, function () {})
     },
     //删除用户、部门、角色
-    deleteUsers(pageName:string,data: string[]) {
+    deleteUsers(pageName:string,data: number[]) {
       deleteUser(pageName,data, function (res: any) {
         if (res.code === 200) {
           ElMessage({

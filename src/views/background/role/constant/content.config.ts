@@ -41,9 +41,9 @@ const contentConfig={
     },
     {
       type:'custom',
-      prop:'isSystemic',
+      prop:'systemic',
       label:'内置角色',
-      title:{isTrue:'否',isFalse:'是'}
+      title:{isTrue:'是',isFalse:'否'}
     },
     {
       type:'handler',

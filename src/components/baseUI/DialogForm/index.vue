@@ -2,7 +2,7 @@
   <div class="dialog">
     <el-dialog
       v-model="dialogVisible"
-      :title="uid ? dialogConfig.header.editTitle : dialogConfig.header.addTitle"
+      :title="id ? dialogConfig.header.editTitle : dialogConfig.header.addTitle"
       :width="dialogConfig.width"
     >
       <el-form
@@ -73,7 +73,7 @@
           </el-form-item>
         </template>
         <!-- 密码框只有用户新增才有 -->
-        <template v-if="!uid && dialogConfig.pageName === 'user'">
+        <template v-if="!id && dialogConfig.pageName === 'user'">
           <el-form-item label="密码" prop="password">
             <el-input v-model="dialogForm.password" clearable show-password />
           </el-form-item>
@@ -102,7 +102,7 @@ const props = defineProps({
   }
 })
 const dialogVisible = ref(false)
-const uid = ref('')
+const id = ref('')
 
 interface DialogListType {
   roleList: any[]
@@ -154,10 +154,10 @@ const showPermissionList = () => {
 //回显数据点击修改，点击添加置空
 const showVisible = (data) => {
   dialogVisible.value = true
-  uid.value = data?.uid
-  if (data?.uid) {
+  id.value = data?.id
+  if (data?.id) {
     console.log('data', data)
-    let { uid, ...obj } = data
+    let { id, ...obj } = data
     for (let key in obj) {
       dialogForm[key] = obj[key]
     }
@@ -175,7 +175,7 @@ const cancelBtn = () => {
 
 //确定后添加用户
 const confirmBtn = () => {
-  if (!uid.value) {
+  if (!id.value) {
     let data = {
       ...dialogForm
     }
@@ -184,7 +184,7 @@ const confirmBtn = () => {
     emit('add', dialogForm)
   } else {
     let data = {
-      uid: uid.value,
+      id: id.value,
       ...dialogForm
     }
     userStore.updateUsers(props.dialogConfig.pageName, data)

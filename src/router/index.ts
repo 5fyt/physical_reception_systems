@@ -60,6 +60,15 @@ const routes: Array<RouteRecordRaw> = [
           title: '用户',
           isTab: true
         }
+      },
+      {
+        path:'goods',
+        name:'MisGoods',
+        component:()=>import('@/views/background/goods/index.vue'),
+        meta:{
+          title:'体检套餐',
+          isTab:true
+        }
       }
     ]
   },
