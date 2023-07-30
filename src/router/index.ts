@@ -5,7 +5,7 @@ const history = createWebHistory()
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: { name: 'Front' }
+    redirect: { name: 'FrontIndex' }
   },
   {
     path: '/front',
@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'index',
         name: 'FrontIndex',
         component: () => import('@/views/reception/front/index.vue')
+      },
+      {
+        path: 'goods/:id',
+        name: 'FrontGoods',
+        component: () => import('@/views/reception/goods/index.vue')
       }
     ]
   },
@@ -62,12 +67,12 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path:'goods',
-        name:'MisGoods',
-        component:()=>import('@/views/background/goods/index.vue'),
-        meta:{
-          title:'体检套餐',
-          isTab:true
+        path: 'goods',
+        name: 'MisGoods',
+        component: () => import('@/views/background/goods/index.vue'),
+        meta: {
+          title: '体检套餐',
+          isTab: true
         }
       }
     ]

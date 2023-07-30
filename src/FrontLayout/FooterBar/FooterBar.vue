@@ -33,6 +33,57 @@
           </li>
         </ul>
       </div>
+      <div class="other-container">
+        <ul class="list">
+          <li class="left">
+            <img src="../../assets/front/index/service.png" />
+            <p class="tel">400-6578-5023</p>
+          </li>
+          <li>
+            <ul class="link-list">
+              <li><a href="">关于我们</a></li>
+              <li><a href="">企业简介</a></li>
+              <li><a href="">发展历程</a></li>
+              <li><a href="">产业生态圈</a></li>
+              <li><a href="">企业文化</a></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="link-list">
+              <li><a href="">每年资讯</a></li>
+              <li><a href="">企业新闻</a></li>
+              <li><a href="">媒体报道</a></li>
+              <li><a href="">党建工作</a></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="link-list">
+              <li><a href="">客户服务</a></li>
+              <li><a href="">帮助中心</a></li>
+              <li><a href="">预约通道</a></li>
+              <li><a href="">售后资讯</a></li>
+              <li><a href="">隐私政策</a></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="link-list">
+              <li><a href="">业务合作</a></li>
+              <li><a href="">友情链接</a></li>
+              <li><a href="">联系我们</a></li>
+            </ul>
+          </li>
+          <li class="right">
+            <div class="ercode">
+              <p>微信公众号</p>
+              <img src="../../assets/front/index/ercode-1.png" />
+            </div>
+            <div class="ercode">
+              <p>下载体检APP</p>
+              <img src="../../assets/front/index/ercode-2.png" />
+            </div>
+          </li>
+        </ul>
+      </div>
     </footer>
   </div>
 </template>

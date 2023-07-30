@@ -36,14 +36,29 @@
       </div>
     </div>
     <div class="operate-container">
-      <el-button type="primary" size="large"> 登录/注册 </el-button>
+      <el-button type="primary" size="large" @click="login" v-if="header.status === 'loginout'">
+        登录/注册
+      </el-button>
+      <div class="btn" v-if="header.status == 'login'" @click="router.push({ name: 'FrontMine' })">
+        <el-icon><User /></el-icon>
+        <span>个人中心</span>
+      </div>
+      <div class="btn" v-if="header.status == 'login'" @click="logout">
+        <el-icon><SwitchButton /></el-icon>
+        <span>退出系统</span>
+      </div>
     </div>
   </header>
+  <login-dialog ref="dialogRef"></login-dialog>
 </template>
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import type { FormInstance } from 'element-plus'
+import LoginDialog from '../logindialog/index.vue'
+const dialogRef = ref<FormInstance>()
 const header = reactive({
   keyword: '',
+  status: 'loginout',
   tags: [
     {
       label: '入职体检',
@@ -59,6 +74,10 @@ const header = reactive({
     }
   ]
 })
+const login = () => {
+  dialogRef.value?.showDialog()
+}
+const logout = () => {}
 </script>
 <style>
 @import url('./index.less');
