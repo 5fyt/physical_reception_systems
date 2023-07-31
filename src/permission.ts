@@ -4,7 +4,6 @@ router.beforeEach((to, from, next) => {
   let permissions = localStorage.getItem('permissions')
   let token = localStorage.getItem('token')
   let fullPath = to.fullPath
-  console.log(token)
   if (fullPath.startsWith('/mis') && fullPath != '/mis/login') {
     if (permissions == null || permissions == '' || token == null || token == '') {
       console.log('token为空')

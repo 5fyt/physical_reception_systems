@@ -1,7 +1,7 @@
 <template>
   <template v-for="(item, index) in goodsList" :key="index">
     <div class="goods-container">
-      <nav>
+      <nav v-if="show">
         <h3>{{ item.title }}</h3>
         <el-link :icon="Plus" :underline="false" @click="moreHandle">查看更多</el-link>
       </nav>
@@ -35,6 +35,12 @@
 import { reactive } from 'vue'
 import {Plus} from '@element-plus/icons-vue'
 import goodsListInitial from '@/global/constant/goodsList/index.ts'
+const props=defineProps({
+  show:{
+    type:Boolean,
+    default:true
+  }
+})
 const goodsList = reactive(goodsListInitial)
 const moreHandle=()=>{}
 </script>

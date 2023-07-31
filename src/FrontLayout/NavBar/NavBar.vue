@@ -8,19 +8,14 @@
       </div>
     </div>
     <div class="search-container">
-      <div>
-        <el-input
+      <div class="search">
+        <input
           v-model="header.keyword"
           placeholder="请输入套餐名或者编号"
-          size="large"
           maxlength="50"
           class="keyword-input"
-          clearable
-        >
-          <template #append>
-            <el-button>搜索</el-button>
-          </template>
-        </el-input>
+        />
+        <button class="searchBtn">搜索</button>
       </div>
       <div>
         <el-tag
@@ -36,7 +31,13 @@
       </div>
     </div>
     <div class="operate-container">
-      <el-button type="primary" size="large" @click="login" v-if="header.status === 'loginout'">
+      <el-button
+        type="primary"
+        size="large"
+        @click="login"
+        v-if="header.status === 'loginout'"
+        class="loginBtn"
+      >
         登录/注册
       </el-button>
       <div class="btn" v-if="header.status == 'login'" @click="router.push({ name: 'FrontMine' })">
@@ -79,6 +80,6 @@ const login = () => {
 }
 const logout = () => {}
 </script>
-<style>
+<style scoped lang="less">
 @import url('./index.less');
 </style>

@@ -7,6 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     redirect: { name: 'FrontIndex' }
   },
+  //前台路由
   {
     path: '/front',
     name: 'Front',
@@ -21,10 +22,32 @@ const routes: Array<RouteRecordRaw> = [
         path: 'goods/:id',
         name: 'FrontGoods',
         component: () => import('@/views/reception/goods/index.vue')
+      },
+      {
+        path: 'goods_list',
+        name: 'FrontGoodsList',
+        component: () => import('@/views/reception/goodsfilter/index.vue')
+      },
+      {
+        path: 'customer',
+        name: 'FrontGoodsCustomer',
+        component: () => import('@/views/reception/customer/index.vue'),
+        children: [
+          {
+            path: 'Mine',
+            name: 'FrontMine',
+            component: () => import('@/views/reception/customer/FrontMine/index.vue')
+          },
+          {
+            path: 'order_list',
+            name: 'FrontOrderList',
+            component: () => import('@/views/reception/customer/OrderList/index.vue')
+          }
+        ]
       }
     ]
   },
-
+  //后台路由
   {
     path: '/main',
     redirect: { name: 'MisHome' },

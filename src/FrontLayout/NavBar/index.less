@@ -1,8 +1,11 @@
 @import url('../../styles/index.less');
 .header {
-  padding-top: 30px;
+  padding: 12px 18px;
   overflow: hidden;
   user-select: none;
+  background-color: #fff;
+  width: 100%;
+
   .logo-container {
     float: left;
     display: flex;
@@ -15,29 +18,50 @@
     h3 {
       font-size: 34px;
       margin: 3px 0 3px 0;
-      color: @fc-1;
+      color: #94c52c;
     }
     p {
       font-size: 18px;
       margin: 0;
-      color: @fc-1;
+      color: #0d70b7;
     }
+  }
+  /deep/ .el-button {
+    border-radius: 0 4px 4px 0;
   }
   .search-container {
     float: left;
     margin-top: 5px;
-    margin-left: 100px;
-    .keyword-input {
-      width: 400px;
+    margin-left: 59px;
+    .search {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 10px;
-      border: 1px solid rgb(17, 156, 236);
-      border-radius: 4px;
+      .keyword-input {
+        width: 500px;
+        padding: 8px;
+        font-size:14px;
+        outline: none;
+        border: 1px solid rgb(17, 156, 236);
+        &:focus {
+          caret-color: #098658;
+          box-shadow: 0 2px 6px #409eff;
+        }
+
+      }
+
+      .searchBtn {
+        width: 60px;
+        height: 40px;
+        background-color: #409eff;
+        color: #fff;
+        text-align: center;
+        line-height: 40px;
+        font-size: 14px;
+        border: none;
+      }
     }
-    .el-input-group__append,
-    .el-input-group__prepend {
-      background-color: #78e9ab !important;
-      color: #455f94 !important;
-    }
+
     .tag {
       margin-right: 10px;
     }
@@ -45,5 +69,9 @@
   .operate-container {
     float: right;
     display: flex;
+    margin: 25px;
+    .loginBtn {
+      border-radius: 4px;
+    }
   }
 }

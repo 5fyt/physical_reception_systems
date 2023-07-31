@@ -33,6 +33,71 @@
     </div>
   </div>
   <goods-list></goods-list>
+  <div class="partner-container">
+    <h3>—&nbsp;&nbsp;合作伙伴&nbsp;&nbsp;—</h3>
+    <el-carousel height="220px" :autoplay="false">
+      <el-carousel-item>
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c1.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c2.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c3.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c4.png" />
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c5.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c6.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c7.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c8.png" />
+          </el-col>
+        </el-row>
+      </el-carousel-item>
+      <el-carousel-item>
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c9.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c10.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c11.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c12.png" />
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c13.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c14.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c15.png" />
+          </el-col>
+          <el-col :span="6">
+            <img class="logo" src="../../../assets/front/index/c16.png" />
+          </el-col>
+        </el-row>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 <script setup lang="ts">
 import GoodsList from '@/components/baseUI/GoodsList/index.vue'
@@ -81,4 +146,21 @@ import GoodsList from '@/components/baseUI/GoodsList/index.vue'
     }
   }
 }
+.partner-container {
+    h3 {
+      font-size: 36px;
+      text-align: center;
+      margin-top: 70px;
+      margin-bottom: 40px;
+      color: @fc-1;
+    }
+    .el-row {
+      margin-bottom: 50px;
+    }
+    .logo {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
 </style>
