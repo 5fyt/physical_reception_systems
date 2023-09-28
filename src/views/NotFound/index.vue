@@ -10,7 +10,7 @@
   background-image: url('../../assets/404.jpg');
   background-size: cover;
   background-position: center;
-  .title: {
+  .title{
     font-size: 28px;
     color: #888;
     padding-top: 100px;

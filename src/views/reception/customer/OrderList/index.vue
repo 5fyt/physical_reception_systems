@@ -7,14 +7,14 @@
           placeholder="套餐标题 / 订单编号"
           class="keyword"
           maxlength="30"
-          clearable="clearable"
+          clearable
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" :icon="Search" @click="searchHandle()">查询</el-button>
+        <el-button type="primary" :icon="Search" @click="searchHandle">查询</el-button>
       </el-form-item>
       <el-form-item class="mold">
-        <el-radio-group v-model="dataForm.statusLabel" size="large" @change="searchHandle()">
+        <el-radio-group v-model="dataForm.statusLabel" size="large" @change="searchHandle">
           <el-radio-button label="全部"></el-radio-button>
           <el-radio-button label="未付款"></el-radio-button>
           <el-radio-button label="已付款"></el-radio-button>
@@ -29,7 +29,7 @@
             订单号：
             <span>{{ one.outTradeNo }}</span>
           </div>
-          <div class="detail" @click="searchDetailHandle(one.snapshotId)">查看商品详情</div>
+          <div class="detail" @click="searchDetailHandle()">查看商品详情</div>
         </div>
         <div class="content">
           <img :src="one.goodsImage" class="image" />
@@ -57,35 +57,18 @@
             <el-button
               v-if="one.status == '未付款'"
               type="primary"
-              :disabled="one.disabled"
               @click="paymentHandle(one.outTradeNo)"
             >
               付款
             </el-button>
-            <el-button
-              v-if="one.status == '未付款'"
-              type="danger"
-              @click="closeOrderHandle(one.id)"
-            >
+            <el-button v-if="one.status == '未付款'" type="danger" @click="cancelOrderHandle">
               取消订单
             </el-button>
-            <el-button
-              v-if="one.status == '已付款'"
-              plain
-              type="primary"
-              :disabled="one.appointCount == one.number"
-              @click="appointHandle(one.id, one.number, one.appointCount)"
-            >
+            <el-button v-if="one.status == '已付款'" plain type="primary" @click="appointHandle">
               预约体检
             </el-button>
             <el-button v-if="one.status == '已结束'">获取发票</el-button>
-            <el-button
-              plain
-              v-if="one.status == '已付款'"
-              type="danger"
-              :disabled="one.appointCount == one.number"
-              @click="refundHandle(one.id)"
-            >
+            <el-button plain v-if="one.status == '已付款'" type="danger" @click="refundHandle()">
               退款
             </el-button>
           </div>
@@ -107,17 +90,14 @@
   </el-card>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, Ref, getCurrentInstance } from 'vue'
+import { reactive, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
-import router from '../../router/index'
 
 import { dayjs } from 'element-plus'
 import isBetween from 'dayjs/plugin/isBetween'
 dayjs.extend(isBetween)
 
-const { proxy } = getCurrentInstance()
-
-let empty = ref(false)
+const empty = ref(false)
 
 const dataForm = reactive({
   keyword: null,
@@ -154,6 +134,12 @@ const data = reactive({
 })
 const sizeChangeHandle = () => {}
 const currentChangeHandle = () => {}
+const searchHandle = () => {}
+const paymentHandle = (value: string) => {}
+const searchDetailHandle = () => {}
+const cancelOrderHandle = () => {}
+const appointHandle = () => {}
+const refundHandle = () => {}
 </script>
 <style lang="less">
 @import url('./index.less');

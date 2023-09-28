@@ -31,7 +31,7 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import filterArr from '@/global/constant/goodsfilter/index.ts'
+import filterArr from '@/global/constant/goodsfilter/index'
 import GoodsList from '@/components/baseUI/GoodsList/index.vue'
 interface FilterItem {
   title: string
@@ -39,11 +39,12 @@ interface FilterItem {
   data: { name: string; value?: number }[]
 }
 const filterArray = reactive<FilterItem[]>(filterArr)
-const radio = ref(null)
-const changeHandler = (value) => {
+const radio = ref('最新')
+const changeHandler = (value: any) => {
   console.log(value)
 }
 const selectHandler = () => {}
+const selectPrice = () => {}
 </script>
 <style lang="less" scope>
 @import url('./index.less');
