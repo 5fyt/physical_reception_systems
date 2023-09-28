@@ -59,17 +59,18 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue'
-const data = reactive({
-  name: '东方不败',
-  sex: '男',
-  tel: '13312345678',
-  photo: '',
-  createTime: '2024-06-01',
-  count: 3,
-  number: 3,
-  amount: 3789
+import GoodsDetail from '../goods/goodsdetail/index.vue'
+import initialData from '@/global/constant/goods/index.ts'
+const dataForm = reactive({
+  number: 1
 })
-const updateHandle = () => {}
+const constantData = reactive(initialData)
+const data = reactive({
+  initialPrice: 2249.0,
+  currentPrice: 2142.0,
+  ruleName: null
+})
+const handleChange = () => {}
 </script>
 <style lang="less">
 @import url('./index.less');
