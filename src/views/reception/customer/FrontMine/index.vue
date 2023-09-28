@@ -58,20 +58,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, Ref, getCurrentInstance } from 'vue'
-import router from '../../router/index'
-const { proxy } = getCurrentInstance()
-
+import { reactive } from 'vue'
 const data = reactive({
   name: '东方不败',
   sex: '男',
   tel: '13312345678',
-  photo: null,
+  photo: '',
   createTime: '2024-06-01',
   count: 3,
   number: 3,
   amount: 3789
 })
+const updateHandle = () => {}
 </script>
 <style lang="less">
 @import url('./index.less');

@@ -4,7 +4,7 @@
     <nav-bar></nav-bar>
     <div class="main-right">
       <!--key 值保证点击切换路由时，加载的是不同路由，以便加载出重复的缓存内容，二级路由  -->
-      <router-view :key="router.currentRoute.value.query.random"></router-view>
+      <router-view :key="routerKey"></router-view>
     </div>
     <FooterBar v-if="show"></FooterBar>
   </div>
@@ -14,10 +14,12 @@ import { computed } from 'vue'
 import router from '@/router'
 import NavBar from './NavBar/NavBar.vue'
 import FooterBar from './FooterBar/FooterBar.vue'
-const show=computed(()=>{
-  return router.currentRoute.value.name==='FrontIndex'?true:false
+const routerKey = computed(() => {
+  return router.currentRoute.value.name as string
 })
-
+const show = computed(() => {
+  return router.currentRoute.value.name === 'FrontIndex' ? true : false
+})
 </script>
 <style scope>
 .layout {
@@ -29,3 +31,4 @@ const show=computed(()=>{
   margin-right: auto;
 }
 </style>
+

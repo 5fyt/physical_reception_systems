@@ -21,7 +21,7 @@
         <el-tag
           v-for="item in header.tags"
           :key="item.label"
-          :type="item.type"
+          type="success"
           class="tag"
           effect="light"
           round
@@ -54,9 +54,13 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type { FormInstance } from 'element-plus'
+import router from '@/router'
+
 import LoginDialog from '../logindialog/index.vue'
-const dialogRef = ref<FormInstance>()
+interface ShowProps {
+  showDialog: () => void
+}
+const dialogRef = ref<ShowProps>()
 const header = reactive({
   keyword: '',
   status: 'loginout',

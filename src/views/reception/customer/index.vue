@@ -35,7 +35,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import router from '@/router/index.ts'
+import router from '@/router'
 const selectHandle = () => {}
 </script>
 <style lang="less" scope>

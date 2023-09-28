@@ -24,7 +24,7 @@
               <span class="old">￥{{ one.initialPrice }}</span>
               <span class="sale">已售{{ one.salesVolume }}</span>
             </p>
-            <input type="button" class="buy-btn" value="立即购买" @click="buyHandle(one.id)" />
+            <input type="button" class="buy-btn" value="立即购买" @click="buyHandle" />
           </div>
         </li>
       </ul>
@@ -33,16 +33,17 @@
 </template>
 <script setup lang="ts">
 import { reactive } from 'vue'
-import {Plus} from '@element-plus/icons-vue'
-import goodsListInitial from '@/global/constant/goodsList/index.ts'
-const props=defineProps({
-  show:{
-    type:Boolean,
-    default:true
+import { Plus } from '@element-plus/icons-vue'
+import goodsListInitial from '@/global/constant/goodsList/index'
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: true
   }
 })
 const goodsList = reactive(goodsListInitial)
-const moreHandle=()=>{}
+const moreHandle = () => {}
+const buyHandle = () => {}
 </script>
 <style lang="less">
 @import url('./index.less');
