@@ -1,4 +1,43 @@
 @import url('../../styles/index.less');
+.nav {
+  height: 45px;
+  line-height: 45px;
+  width: 100%;
+  background: #f7f7f7;
+  font-size: 16px;
+
+  .autoWidth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1600px;
+    margin: 0 auto;
+    color: #4aaf75;
+    .ps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        display: inline-block;
+        margin-left: 5px;
+        font-weight: 600;
+      }
+    }
+    .login_title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      .solid {
+        width: 1px;
+        height: 14px;
+        margin: 0 10px;
+        background-color: #4aaf75;
+      }
+    }
+  }
+}
 .header {
   padding: 12px 18px;
   overflow: hidden;
@@ -40,14 +79,13 @@
       .keyword-input {
         width: 500px;
         padding: 8px;
-        font-size:14px;
+        font-size: 14px;
         outline: none;
         border: 1px solid rgb(17, 156, 236);
         &:focus {
           caret-color: #098658;
           box-shadow: 0 2px 6px #409eff;
         }
-
       }
 
       .searchBtn {

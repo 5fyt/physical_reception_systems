@@ -1,4 +1,17 @@
 <template>
+  <header class="nav">
+    <div class="autoWidth">
+      <div class="ps">
+        <el-icon size="20"><Location /></el-icon>
+        <span>南昌 [本地]</span>
+      </div>
+      <div class="login_title">
+        <div class="login" @click="login">登入</div>
+        <div class="solid"></div>
+        <div class="register" @click="register">注册</div>
+      </div>
+    </div>
+  </header>
   <header class="header">
     <div class="logo-container">
       <img src="../../assets/front/index/logo.png" class="logo" />
@@ -56,7 +69,7 @@
 import { reactive, ref } from 'vue'
 import router from '@/router'
 
-import LoginDialog from '../logindialog/index.vue'
+import LoginDialog from '../LoginDialog/index.vue'
 interface ShowProps {
   showDialog: () => void
 }
@@ -83,6 +96,7 @@ const login = () => {
   dialogRef.value?.showDialog()
 }
 const logout = () => {}
+const register=()=>{}
 </script>
 <style scoped lang="less">
 @import url('./index.less');

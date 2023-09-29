@@ -1,0 +1,107 @@
+
+.goods-container {
+  margin-top: 50px;
+  user-select: none;
+  nav {
+      display: flex;
+      justify-content: space-between;
+      h3 {
+          font-size: 32px;
+          color: #333;
+          font-weight: normal;
+          margin: 0px 0 25px 0;
+      }
+  }
+  .goods-list {
+      overflow: hidden;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      .item {
+          width: 270px;
+          padding: 10px;
+          float: left;
+
+          margin: 10px 5px 5px 5px;
+          transition: all 0.3s;
+          box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+          &:last-of-type {
+              margin-right: 0;
+          }
+          &:hover{
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+          }
+          .card {
+              img {
+                  width: 280px;
+              }
+              h4 {
+                  font-size: 18px;
+                  font-weight: normal;
+                  color: #333;
+                  margin: 10px 0 5px 0;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+              }
+
+              .desc {
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+                  font-size: 12px;
+                  color: #333;
+                  margin: 0 0 5px 0;
+                  line-height: 1.5;
+                  span {
+                      background-color: rgb(0, 162, 255);
+                      color: #fff;
+                      padding: 2px;
+                      font-size: 11px;
+                  }
+              }
+              .price {
+                  margin: 0;
+                  overflow: hidden;
+                  .current {
+                      color: purple;
+                      font-size: 22px;
+                      font-weight: bold;
+                      float: left;
+                  }
+                  .old {
+                      float: left;
+                      font-size: 13px;
+                      color: purple;
+                      text-decoration: line-through;
+                      margin-left: 10px;
+                      margin-top: 7px;
+                  }
+                  .sale {
+                      float: right;
+                      font-size: 12px;
+                      color:  purple;
+                      margin-top: 7px;
+                  }
+              }
+              .buy-btn {
+                  width: 100%;
+                  background-color: rgb(67, 218, 160);
+                  border: none;
+                  border-radius: 3px;
+                  height: 40px;
+                  color: #fff;
+                  font-size: 15px;
+                  margin-top: 10px;
+                  outline: none;
+                  cursor: pointer;
+                  &:active {
+                      background-color: rgb(0, 162, 255);
+                  }
+              }
+          }
+      }
+  }
+}
