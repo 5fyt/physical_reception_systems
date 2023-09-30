@@ -1,107 +1,104 @@
-
 .goods-container {
   margin-top: 50px;
+  width: 1450px;
+  margin: 50px auto;
   user-select: none;
+  .link{
+    font-size: 18px;
+    .el-icon{
+      margin-right: 4px;
+    }
+  }
   nav {
-      display: flex;
-      justify-content: space-between;
-      h3 {
-          font-size: 32px;
-          color: #333;
-          font-weight: normal;
-          margin: 0px 0 25px 0;
-      }
+    display: flex;
+    justify-content: space-between;
+    h3 {
+      font-size: 32px;
+      color: #333;
+      font-weight: normal;
+      margin: 0px 0 25px 0;
+    }
   }
   .goods-list {
-      overflow: hidden;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      .item {
-          width: 270px;
-          padding: 10px;
-          float: left;
-
-          margin: 10px 5px 5px 5px;
-          transition: all 0.3s;
-          box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-          &:last-of-type {
-              margin-right: 0;
-          }
-          &:hover{
-            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-            transform: translateY(-5px);
-          }
-          .card {
-              img {
-                  width: 280px;
-              }
-              h4 {
-                  font-size: 18px;
-                  font-weight: normal;
-                  color: #333;
-                  margin: 10px 0 5px 0;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
-              }
-
-              .desc {
-                  display: -webkit-box;
-                  -webkit-box-orient: vertical;
-                  -webkit-line-clamp: 2;
-                  overflow: hidden;
-                  font-size: 12px;
-                  color: #333;
-                  margin: 0 0 5px 0;
-                  line-height: 1.5;
-                  span {
-                      background-color: rgb(0, 162, 255);
-                      color: #fff;
-                      padding: 2px;
-                      font-size: 11px;
-                  }
-              }
-              .price {
-                  margin: 0;
-                  overflow: hidden;
-                  .current {
-                      color: purple;
-                      font-size: 22px;
-                      font-weight: bold;
-                      float: left;
-                  }
-                  .old {
-                      float: left;
-                      font-size: 13px;
-                      color: purple;
-                      text-decoration: line-through;
-                      margin-left: 10px;
-                      margin-top: 7px;
-                  }
-                  .sale {
-                      float: right;
-                      font-size: 12px;
-                      color:  purple;
-                      margin-top: 7px;
-                  }
-              }
-              .buy-btn {
-                  width: 100%;
-                  background-color: rgb(67, 218, 160);
-                  border: none;
-                  border-radius: 3px;
-                  height: 40px;
-                  color: #fff;
-                  font-size: 15px;
-                  margin-top: 10px;
-                  outline: none;
-                  cursor: pointer;
-                  &:active {
-                      background-color: rgb(0, 162, 255);
-                  }
-              }
-          }
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .item {
+      border-radius: 10px;
+      width: 315px;
+      padding: 10px 10px 30px 10px;
+      float: left;
+      height: 300px;
+      background-color: #fff;
+      margin: 4px 36px 24px 0px;
+      transition: all 0.3s;
+      box-shadow: 0 6px 10px 0 rgba(95, 101, 105, 0.15);
+      &:last-of-type {
+        margin-right: 0;
       }
+      &:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        margin-top: -5px;
+      }
+      .card {
+        img {
+          width: 100%;
+          height: 160px;
+          background-color: #fff;
+        }
+        h4 {
+          font-size: 18px;
+          font-weight: normal;
+          color: #545c63;
+          margin: 10px 0 5px 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .desc {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          font-size: 16px;
+          color: #333;
+          margin: 10px 0 5px 0;
+          line-height: 1.5;
+          span {
+            background-color: #fac771;
+            color: #fff;
+            padding: 2px;
+            font-size: 14px;
+          }
+        }
+        .price {
+          margin: 10px 0;
+          overflow: hidden;
+          .current {
+            color: #f01414;
+            font-size: 22px;
+            font-weight: bold;
+            float: left;
+          }
+          .old {
+            float: left;
+            font-size: 13px;
+            color: #f01414;
+            text-decoration: line-through;
+            margin-left: 10px;
+            margin-top: 7px;
+          }
+          .sale {
+            float: right;
+            font-size: 12px;
+            color: #f01414;
+            margin-top: 7px;
+          }
+        }
+
+      }
+    }
   }
 }

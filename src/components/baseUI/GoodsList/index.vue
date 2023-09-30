@@ -3,7 +3,7 @@
     <div class="goods-container">
       <nav v-if="show">
         <h3>{{ item.title }}</h3>
-        <el-link :icon="Plus" :underline="false" @click="moreHandle">查看更多</el-link>
+        <el-link :icon="Plus" :underline="false" @click="moreHandle" class="link">查看更多</el-link>
       </nav>
       <ul class="goods-list">
         <li class="item" v-for="one in item.part">
@@ -24,7 +24,6 @@
               <span class="old">￥{{ one.initialPrice }}</span>
               <span class="sale">已售{{ one.salesVolume }}</span>
             </p>
-            <input type="button" class="buy-btn" value="立即购买" @click="buyHandle" />
           </div>
         </li>
       </ul>

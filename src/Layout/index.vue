@@ -28,7 +28,7 @@ const show = computed(() => {
   background-color: #f0f2f5;
 }
 .main-right {
-  width: 1600px;
+ 
   margin-left: auto;
   margin-right: auto;
 }

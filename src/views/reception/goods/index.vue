@@ -74,9 +74,9 @@ const data = reactive({
   sex: '',
   tel: '',
   createTime: '',
-  amount: '',
-  count: '',
-  number: ''
+  amount: undefined,
+  count: undefined,
+  number: 0
 })
 const handleChange = () => {}
 const updateHandle = () => {}
