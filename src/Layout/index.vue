@@ -2,6 +2,7 @@
   <div class="layout">
     <!-- 头部区域 -->
     <nav-bar></nav-bar>
+    <header-nav></header-nav>
     <div class="main-right">
       <!--key 值保证点击切换路由时，加载的是不同路由，以便加载出重复的缓存内容，二级路由  -->
       <router-view :key="routerKey"></router-view>
@@ -14,6 +15,7 @@ import { computed } from 'vue'
 import router from '@/router'
 import NavBar from './NavBar/NavBar.vue'
 import FooterBar from './FooterBar/FooterBar.vue'
+import HeaderNav from './HeaderNav/index.vue'
 const routerKey = computed(() => {
   return router.currentRoute.value.name as string
 })
@@ -26,9 +28,8 @@ const show = computed(() => {
   background-color: #f0f2f5;
 }
 .main-right {
-  width: 1200px;
+  width: 1600px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
-

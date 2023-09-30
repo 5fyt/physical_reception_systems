@@ -12,57 +12,6 @@
       </div>
     </div>
   </header>
-  <header class="header">
-    <div class="logo-container">
-      <img src="../../assets/front/index/logo.png" class="logo" />
-      <div>
-        <h3>神州大健康</h3>
-        <p>www.chinahealty.com</p>
-      </div>
-    </div>
-    <div class="search-container">
-      <div class="search">
-        <input
-          v-model="header.keyword"
-          placeholder="请输入套餐名或者编号"
-          maxlength="50"
-          class="keyword-input"
-        />
-        <button class="searchBtn">搜索</button>
-      </div>
-      <div>
-        <el-tag
-          v-for="item in header.tags"
-          :key="item.label"
-          type="success"
-          class="tag"
-          effect="light"
-          round
-        >
-          {{ item.label }}
-        </el-tag>
-      </div>
-    </div>
-    <div class="operate-container">
-      <el-button
-        type="primary"
-        size="large"
-        @click="login"
-        v-if="header.status === 'loginout'"
-        class="loginBtn"
-      >
-        登录/注册
-      </el-button>
-      <div class="btn" v-if="header.status == 'login'" @click="router.push({ name: 'FrontMine' })">
-        <el-icon><User /></el-icon>
-        <span>个人中心</span>
-      </div>
-      <div class="btn" v-if="header.status == 'login'" @click="logout">
-        <el-icon><SwitchButton /></el-icon>
-        <span>退出系统</span>
-      </div>
-    </div>
-  </header>
   <login-dialog ref="dialogRef"></login-dialog>
 </template>
 <script setup lang="ts">
@@ -96,7 +45,7 @@ const login = () => {
   dialogRef.value?.showDialog()
 }
 const logout = () => {}
-const register=()=>{}
+const register = () => {}
 </script>
 <style scoped lang="less">
 @import url('./index.less');
