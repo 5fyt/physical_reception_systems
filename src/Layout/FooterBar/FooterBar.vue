@@ -4,85 +4,41 @@
       <div class="aboutus-container">
         <ul class="list">
           <li class="item">
-            <img src="../../assets/front/index/d1.svg" />
+            <img src="../../assets/front/index/base_jhbg.png" />
             <div>
-              <h3>官方直营</h3>
-              <p>600余家体检中心线上预约、专注健康体检17年</p>
+              <h6>全国3000多家医院</h6>
+              <p>预约体检人次突破100万+</p>
             </div>
           </li>
           <li class="item">
-            <img src="../../assets/front/index/d2.svg" />
+            <img src="../../assets/front/index/base_qgyy.png" />
             <div>
-              <h3>团队优势</h3>
-              <p>标准化、智能化的医疗质量管理体系，打造全生命周期健康管理服务</p>
+              <h6>院方指定授权</h6>
+              <p>医院官方授权预约合作方</p>
             </div>
           </li>
           <li class="item">
-            <img src="../../assets/front/index/d3.svg" />
+            <img src="../../assets/front/index/base_tgcl.png" />
             <div>
-              <h3>专业保证</h3>
-              <p>拥有行业专家、医技护人员等近35000人组成的专业医疗服务团队</p>
+              <h6>预约退改承诺</h6>
+              <p>体检预约改期、退款快速处理</p>
             </div>
           </li>
           <li class="item">
-            <img src="../../assets/front/index/d4.svg" />
+            <img src="../../assets/front/index/base_yfzd.png" />
             <div>
-              <h3>售后服务</h3>
-              <p>未消费订单及时退、过期退、体检保障和隐私保障</p>
+              <h6>检后报告解读</h6>
+              <p>检后专家详细解读体检报告</p>
             </div>
           </li>
         </ul>
       </div>
       <div class="other-container">
-        <ul class="list">
-          <li class="left">
-            <img src="../../assets/front/index/service.png" />
-            <p class="tel">400-6578-5023</p>
-          </li>
-          <li>
-            <ul class="link-list">
-              <li><a href="">关于我们</a></li>
-              <li><a href="">企业简介</a></li>
-              <li><a href="">发展历程</a></li>
-              <li><a href="">产业生态圈</a></li>
-              <li><a href="">企业文化</a></li>
-            </ul>
-          </li>
-          <li>
-            <ul class="link-list">
-              <li><a href="">每年资讯</a></li>
-              <li><a href="">企业新闻</a></li>
-              <li><a href="">媒体报道</a></li>
-              <li><a href="">党建工作</a></li>
-            </ul>
-          </li>
-          <li>
-            <ul class="link-list">
-              <li><a href="">客户服务</a></li>
-              <li><a href="">帮助中心</a></li>
-              <li><a href="">预约通道</a></li>
-              <li><a href="">售后资讯</a></li>
-              <li><a href="">隐私政策</a></li>
-            </ul>
-          </li>
-          <li>
-            <ul class="link-list">
-              <li><a href="">业务合作</a></li>
-              <li><a href="">友情链接</a></li>
-              <li><a href="">联系我们</a></li>
-            </ul>
-          </li>
-          <li class="right">
-            <div class="ercode">
-              <p>微信公众号</p>
-              <img src="../../assets/front/index/ercode-1.png" />
-            </div>
-            <div class="ercode">
-              <p>下载体检APP</p>
-              <img src="../../assets/front/index/ercode-2.png" />
-            </div>
-          </li>
-        </ul>
+        <h6>
+          <a href="javascript:;"> 版权所有 © 2023 江西大健康技术有限公司 </a>
+        </h6>
+
+        <p>声明:本站部分信息图片来源于互联网,如果侵犯了您的权益敬请告知</p>
       </div>
     </footer>
   </div>
