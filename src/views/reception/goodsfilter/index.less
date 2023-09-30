@@ -1,0 +1,61 @@
+@import url('../../../styles//index.less');
+.breadcrumb {
+  margin-top: 20px;
+  color: rgb(45, 150, 236);
+}
+.el-breadcrumb__inner.is-link {
+  color: #32cf4a !important;
+}
+.search-rows {
+  border: solid 1px @bc-22;
+  border-radius: 5px;
+  margin-top: 25px;
+  user-select: none;
+
+  &:hover {
+    box-shadow: 3px 0px 11px 0px rgba(0, 0, 0, 0.2);
+    background-color: rgba(235, 252, 244, 0.1);
+  }
+
+  .row {
+    padding: 12px 30px;
+    border-bottom: dashed 1px @bc-22;
+    font-size: 14px;
+    color: @fc-2;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+    .label {
+      font-weight: bold;
+    }
+    .item {
+      cursor: pointer;
+    }
+    .active {
+      color: @fc-27;
+    }
+  }
+}
+
+.search-filter {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .sort-operate {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    span {
+      font-size: 14px;
+      color: @fc-25;
+    }
+    .sort-icon {
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      margin-top: 1px;
+    }
+  }
+}

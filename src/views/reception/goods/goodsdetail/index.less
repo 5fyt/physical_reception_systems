@@ -1,0 +1,209 @@
+@import url('../../../../styles//index.less');
+fieldset {
+  border-top: solid 1px @bc-1;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  margin: 0;
+  padding: 0;
+  legend {
+    text-align: center;
+    font-size: 30px;
+    background-color: @bgc-22;
+    height: 70px;
+    padding: 0 50px;
+    line-height: 70px;
+    border-radius: 35px;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 30px;
+  }
+  .detail-title {
+    color: @fc-26;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .detail-table {
+    width: 100%;
+    border: solid 1px @bc-22;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 35px;
+
+    th {
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 12px 15px;
+      font-weight: normal;
+      border: solid 1px @bc-22;
+      background-color: @bgc-31;
+      color: @fc-25;
+      width: 200px;
+    }
+    td {
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 12px 15px;
+      font-weight: normal;
+      border: solid 1px @bc-22;
+      color: @fc-26;
+    }
+  }
+  //从此往下都是新添加的CSS样式
+  .descriptions {
+    margin-bottom: 35px;
+  }
+  .content {
+    display: flex;
+    margin-bottom: 60px;
+    .advantage {
+      width: 600px;
+      .card {
+        display: flex;
+        margin-bottom: 25px;
+        &:first-child {
+          margin-top: 10px;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .left {
+          width: 150px;
+          height: 80px;
+          flex-grow: 0;
+          flex-shrink: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: @bgc-30;
+          border-top-left-radius: 40px;
+          border-bottom-left-radius: 40px;
+          span {
+            display: block;
+            width: 70px;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            padding-left: 15px;
+            line-height: 1.5;
+          }
+        }
+        .right {
+          flex-grow: 1;
+          background-color: @bgc-29;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 30px;
+          span {
+            display: block;
+            font-size: 16px;
+            width: 94%;
+            line-height: 1.5;
+            color: @fc-2;
+          }
+        }
+      }
+    }
+    .timeline {
+      padding-top: 10px;
+      ul {
+        list-style: none;
+        padding: 0 0 0 30px;
+        margin: 0;
+        li {
+          display: flex;
+          .list-img {
+            width: 10px;
+            height: 98px;
+          }
+          .list-line {
+            width: 44px;
+            height: 0;
+            border-top: solid 3px @bc-21;
+            margin-top: 44px;
+          }
+          .list-tag {
+            position: relative;
+            img {
+              width: 68px;
+              height: 48px;
+              margin-top: 20px;
+            }
+            span {
+              position: absolute;
+              left: 20px;
+              top: 30px;
+              font-size: 24px;
+              color: #fff;
+              font-weight: bold;
+            }
+          }
+          .list-content {
+            margin-left: 10px;
+            margin-top: 12px;
+            h4 {
+              font-size: 24px;
+              color: @fc-2;
+              margin: 0;
+              font-weight: normal;
+            }
+            p {
+              margin: 0;
+              font-size: 18px;
+              color: @fc-2;
+            }
+          }
+        }
+      }
+    }
+    .look-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      .item {
+        display: flex;
+        margin-bottom: 50px;
+        .left {
+          width: 122px;
+          height: 106px;
+          background-image: url('../../../../assets/front/goods/polygon.png');
+          background-size: 122px 106px;
+          text-align: center;
+          line-height: 106px;
+          font-size: 22px;
+          color: @fc-24;
+        }
+        .right {
+          margin-left: 20px;
+          ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+              font-size: 18px;
+              color: @fc-2;
+              display: flex;
+              margin-bottom: 18px;
+              &:last-of-type {
+                margin-bottom: 0;
+              }
+              &::before {
+                display: block;
+                content: '';
+                width: 24px;
+                height: 24px;
+                background-image: url('../../../../assets/front/goods/tick.png');
+                background-size: 24px;
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

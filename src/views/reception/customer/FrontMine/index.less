@@ -1,0 +1,74 @@
+@import url('../../../../styles/index.less');
+.summary-container {
+  min-height: 632px;
+  .box-card {
+    cursor: default;
+    user-select: none;
+    height: 800px;
+    margin-bottom: 5px;
+    .info {
+      display: flex;
+      border-bottom: 1px solid rgb(246, 243, 243);
+      padding-bottom: 10px;
+      .right {
+        margin-left: 15px;
+        flex-grow: 1;
+        .base {
+          font-size: 14px;
+          color: #409eff;
+          margin-bottom: 8px;
+          overflow: hidden;
+          span {
+            border-right: solid 1px @bc-7;
+            padding: 0 30px;
+            &:first-of-type {
+              padding-left: 0;
+            }
+            &:last-of-type {
+              border-right: none;
+            }
+          }
+          .operate {
+            float: right;
+            display: flex;
+            cursor: pointer;
+            .el-icon {
+              margin-top: 2px;
+              color: @fc-27;
+            }
+            div {
+              font-size: 14px;
+              margin-left: 5px;
+              color: @fc-27;
+            }
+          }
+        }
+        p {
+          margin-top: 0;
+          font-size: 13px;
+          margin-bottom: 6px;
+          color: @fc-3;
+        }
+      }
+    }
+  }
+}
+
+.el-statistic {
+  --el-statistic-content-font-size: 30px;
+}
+
+.statistic-card {
+  padding: 20px;
+  .el-statistic__number{
+    color:rgb(238, 88, 28);
+  }
+  .el-statistic__suffix{
+    color:rgb(238, 88, 28);
+  }
+  .title {
+    align-items: center;
+    font-size: 14px;
+    color:#409eff;
+  }
+}
