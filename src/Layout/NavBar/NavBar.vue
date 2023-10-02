@@ -16,31 +16,12 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import router from '@/router'
-
-import LoginDialog from '../LoginDialog/index.vue'
+import LoginDialog from '../logindialog/index.vue'
 interface ShowProps {
   showDialog: () => void
 }
 const dialogRef = ref<ShowProps>()
-const header = reactive({
-  keyword: '',
-  status: 'loginout',
-  tags: [
-    {
-      label: '入职体检',
-      type: 'success'
-    },
-    {
-      label: '父母体检',
-      type: 'success'
-    },
-    {
-      label: '女士体检',
-      type: 'success'
-    }
-  ]
-})
+
 const login = () => {
   dialogRef.value?.showDialog()
 }

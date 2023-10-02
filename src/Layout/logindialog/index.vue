@@ -19,7 +19,7 @@
           />
         </el-form-item>
         <div class="imageInput">
-          <el-form-item class="InputItem">
+          <el-form-item class="InputItem" prop="imageCode">
             <el-input
               v-model.number="ruleForm.imageCode"
               type="password"
@@ -31,12 +31,12 @@
             />
           </el-form-item>
           <div class="imageCode">
-            <img src="https://www.vipzhiliao.com/verifyCode/1695975128187" mode="scaleToFill" />
+            <img src="imageUrl" mode="scaleToFill" />
             <span>换一张</span>
           </div>
         </div>
         <div class="imageInput">
-          <el-form-item class="InputItem">
+          <el-form-item class="InputItem" prop="code">
             <el-input
               v-model.number="ruleForm.code"
               type="password"
@@ -48,7 +48,7 @@
             />
           </el-form-item>
           <div class="code">
-            <span>获取验证码</span>
+            <span>{{ codeMsg }}</span>
           </div>
         </div>
         <el-form-item>
@@ -67,9 +67,20 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { sendPicCode } from '@/services/api/login'
+import useloginStore from '@/stores/modules/login'
 
+//110 28
 const ruleFormRef = ref<FormInstance>()
-
+const loginStore = useloginStore()
+const ruleForm = reactive({
+  visible: false,
+  phone: '',
+  imageCode: '',
+  code: ''
+})
+const codeMsg = ref('获取验证码')
+const imageUrl = ref('')
 const validatePhone = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入正确的手机号码'))
@@ -81,19 +92,11 @@ const validatePhone = (rule: any, value: any, callback: any) => {
     callback()
   }
 }
-
-const ruleForm = reactive({
-  visible: false,
-  phone: '',
-  imageCode: '',
-  code: ''
-})
-
 const rules = reactive<FormRules<typeof ruleForm>>({
-  phone: [{ validator: validatePhone, trigger: 'blur' }]
+  phone: [{ validator: validatePhone, trigger: 'blur' }],
+  imageCode: [{ required: true, message: '图形验证码不能为空', trigger: 'blur' }],
+  code: [{ required: true, message: '验证码不能为空', trigger: 'blur' }]
 })
-
-
 
 const showDialog = () => {
   ruleForm.visible = true
@@ -101,7 +104,26 @@ const showDialog = () => {
 const close = () => {
   ruleForm.visible = false
 }
-const login = () => {}
+const getImage = async () => {
+  const params = {
+    height: 28,
+    width: 110
+  }
+  const { data } = await sendPicCode(params)
+  imageUrl.value = data
+}
+getImage()
+const login = () => {
+  ruleFormRef.value?.validate(async (isOk) => {
+    if (isOk) {
+      const data = {
+        phone: ruleForm.phone,
+        code: ruleForm.code
+      }
+      await loginStore.loginAsync(data)
+    }
+  })
+}
 const sendSmsCode = () => {}
 defineExpose({ showDialog })
 </script>
