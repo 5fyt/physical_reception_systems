@@ -4,6 +4,7 @@ export type loginParams = {
 }
 export type SendType = {
   phone: string
+  key: string
 }
 export type passwordParams = {
   oldPassword: string

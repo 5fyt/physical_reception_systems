@@ -4,7 +4,7 @@
     <nav-bar></nav-bar>
     <header-nav></header-nav>
     <div class="main-right">
-      <!--key 值保证点击切换路由时，加载的是不同路由，以便加载出重复的缓存内容，二级路由  -->
+      <!-- key 值保证点击切换路由时，加载的是不同路由，以便加载出重复的缓存内容，二级路由  -->
       <router-view :key="routerKey"></router-view>
     </div>
     <FooterBar v-if="show"></FooterBar>
@@ -28,7 +28,7 @@ const show = computed(() => {
   background-color: #f0f2f5;
 }
 .main-right {
- 
+
   margin-left: auto;
   margin-right: auto;
 }

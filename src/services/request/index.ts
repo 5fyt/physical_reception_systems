@@ -17,7 +17,7 @@ class HYRequest {
       (config) => {
         Nprogress.start()
         // console.log('全局请求成功拦截')
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('re_token')
         if (token) {
           config.headers.token = token
         }
