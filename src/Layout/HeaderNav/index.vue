@@ -4,7 +4,7 @@
       <div class="left">
         <div class="logo-container">
           <img src="../../assets/front/index/logo.png" class="logo" />
-          <p>南 昌 市 服 务 性 体 检 预 约 平 台</p>
+          <p>南 昌 市 服 务 性 体 检  平 台</p>
         </div>
         <div class="tabs">
           <ul>
@@ -30,6 +30,10 @@
           <div class="tips" v-if="visible">套餐 编号</div>
           <el-icon size="20" class="icon"><Search /></el-icon>
         </div>
+        <div class="user">
+          <div class="name"></div>
+          <div class="avatar"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -39,11 +43,9 @@
 import { ref } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 
-const activeName = ref('first')
+
 const visible = ref(true)
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
-}
+
 </script>
 <style scoped lang="less">
 @import url('./index.less');

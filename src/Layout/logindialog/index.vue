@@ -70,8 +70,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue'
-import type { FormInstance, FormRules, MessageParams } from 'element-plus'
+import { reactive, ref } from 'vue'
+import type { FormInstance } from 'element-plus'
 import { sendPicCode, sendCode } from '@/services/api/login'
 import useloginStore from '@/stores/modules/login'
 
@@ -94,15 +94,17 @@ const imageData = reactive({
   key: ''
 })
 
-onMounted(() => {
-  getImage()
-})
+
 const showDialog = () => {
+  getImage()
   ruleForm.visible = true
   codeMsg.message = '获取验证码'
 }
 const close = () => {
   ruleForm.visible = false
+  ruleForm.code = ''
+  ruleForm.phone = ''
+  ruleForm.imageCode = ''
 }
 const getImage = async () => {
   const params = {
@@ -183,6 +185,10 @@ const login = async () => {
       code: ruleForm.code
     }
     await loginStore.loginAsync(data)
+    ruleForm.code = ''
+    ruleForm.phone = ''
+    ruleForm.imageCode = ''
+    ruleForm.visible = false
   }
 }
 defineExpose({ showDialog })

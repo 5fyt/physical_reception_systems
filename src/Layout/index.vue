@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <!-- 头部区域 -->
-    <nav-bar></nav-bar>
+    <nav-bar v-if="!visible"></nav-bar>
     <header-nav></header-nav>
     <div class="main-right">
       <!-- key 值保证点击切换路由时，加载的是不同路由，以便加载出重复的缓存内容，二级路由  -->
@@ -19,6 +19,11 @@ import HeaderNav from './HeaderNav/index.vue'
 const routerKey = computed(() => {
   return router.currentRoute.value.name as string
 })
+const visible = computed(() => {
+  const login = JSON.parse(localStorage.getItem('login') as any)
+  console.log(login)
+  return !!login.token
+})
 const show = computed(() => {
   return router.currentRoute.value.name === 'FrontIndex' ? true : false
 })
@@ -28,7 +33,6 @@ const show = computed(() => {
   background-color: #f0f2f5;
 }
 .main-right {
-
   margin-left: auto;
   margin-right: auto;
 }
