@@ -73,11 +73,11 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import { sendPicCode, sendCode } from '@/services/api/login'
-import useloginStore from '@/stores/modules/login'
+import useLoginStore from '@/stores/modules/login'
 
 //110 28
 const ruleFormRef = ref<FormInstance>()
-const loginStore = useloginStore()
+const loginStore = useLoginStore()
 const ruleForm = reactive({
   visible: false,
   phone: '',

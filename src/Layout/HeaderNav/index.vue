@@ -4,7 +4,6 @@
       <div class="left">
         <div class="logo-container">
           <img src="../../assets/front/index/logo.png" class="logo" />
-          <p>南 昌 市 服 务 性 体 检  平 台</p>
         </div>
         <div class="tabs">
           <ul>
@@ -30,9 +29,14 @@
           <div class="tips" v-if="visible">套餐 编号</div>
           <el-icon size="20" class="icon"><Search /></el-icon>
         </div>
-        <div class="user">
-          <div class="name"></div>
-          <div class="avatar"></div>
+      </div>
+      <div class="user">
+        <div class="avatar" @mousemove="show = true" @mouseleave="show = false">
+          <img :src="photo" alt="" class="image" />
+        </div>
+        <DropDown v-if="show" @mousemove="show = true" @mouseleave="show = false"></DropDown>
+        <div class="name">
+          <span>{{ name }}</span>
         </div>
       </div>
     </div>
@@ -41,11 +45,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { TabsPaneContext } from 'element-plus'
-
-
+import DropDown from '../DropDown/index.vue'
+import useLoginStore from '@/stores/modules/login'
+import { storeToRefs } from 'pinia'
+const loginStore = useLoginStore()
+const { name, photo } = storeToRefs(loginStore)
 const visible = ref(true)
-
+const show = ref(false)
 </script>
 <style scoped lang="less">
 @import url('./index.less');

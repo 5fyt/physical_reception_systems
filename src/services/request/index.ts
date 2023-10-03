@@ -17,7 +17,7 @@ class HYRequest {
       (config) => {
         Nprogress.start()
         // console.log('全局请求成功拦截')
-        const token = localStorage.getItem('re_token')
+        const token = JSON.parse(localStorage.getItem('login') as string).token
         if (token) {
           config.headers.token = token
         }
@@ -36,8 +36,7 @@ class HYRequest {
         if (res.status >= 200 && res.status <= 300) {
           return res.data
         } else if (res.status === 401) {
-          localStorage.removeItem('token')
-          localStorage.removeItem('permissions')
+          localStorage.removeItem('login')
         } else {
           ElMessage.error(`${res.data.message}` || '亲您的网络走丢了，请连接网络')
         }
