@@ -35,6 +35,7 @@
         </div>
         <DropDown
           v-if="showDp"
+          :bind-visible="bindshow"
           @mousemove="showDp = true"
           @mouseleave="showDp = false"
           @show-bind="showBind"
@@ -62,8 +63,10 @@ const loginStore = useLoginStore()
 const { name, photo, show } = storeToRefs(loginStore)
 const visible = ref(true)
 const showDp = ref(false)
+const bindshow = ref(false)
 const showBind = () => {
   showBindRef.value?.showDialog()
+  bindshow.value = true
 }
 </script>
 <style scoped lang="less">

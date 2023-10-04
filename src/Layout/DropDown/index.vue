@@ -8,7 +8,8 @@
       </div>
       <div class="right_name">
         <p>{{ name }}</p>
-        <span class="bind" @click="bind">已绑定</span>
+        <span class="bind" @click="bind" v-if="bindVisible">已绑定</span>
+        <span class="prebind" @click="bind" v-if="!bindVisible">未绑定</span>
       </div>
     </div>
     <div class="container">
@@ -38,9 +39,16 @@ import useLoginStore from '@/stores/modules/login'
 import { ElMessage } from 'element-plus'
 import { storeToRefs } from 'pinia'
 import router from '@/router/index'
+
 const loginStore = useLoginStore()
 const { name, photo } = storeToRefs(loginStore)
 const emits = defineEmits(['showBind'])
+defineProps({
+  bindVisible: {
+    type: Boolean,
+    default: false
+  }
+})
 // const showBindRef = ref<ShowProps>()
 const logout = async () => {
   await loginStore.loginoutAsync(() => {
