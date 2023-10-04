@@ -25,7 +25,6 @@ const dialogRef = ref<ShowProps>()
 const login = () => {
   dialogRef.value?.showDialog()
 }
-const logout = () => {}
 const register = () => {}
 </script>
 <style scoped lang="less">

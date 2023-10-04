@@ -40,9 +40,10 @@ const selectHandle = () => {}
 </script>
 <style lang="less" scope>
 .customer {
-  margin-left: -352px !important;
+ 
   margin-top: 30px;
   display: flex;
+  justify-content: space-between;
 }
 .menu {
   width: 200px;

@@ -94,7 +94,6 @@ const imageData = reactive({
   key: ''
 })
 
-
 const showDialog = () => {
   getImage()
   ruleForm.visible = true
@@ -112,9 +111,11 @@ const getImage = async () => {
     width: 90
   }
   const { data } = await sendPicCode(params)
-  const imageBase64 = 'data:image/png;base64,' + data?.imageBase64
-  imageData.imageUrl = imageBase64
-  imageData.key = data?.key
+  if (data?.imageBase64) {
+    const imageBase64 = 'data:image/png;base64,' + data?.imageBase64
+    imageData.imageUrl = imageBase64
+    imageData.key = data?.key
+  }
 }
 
 const changeImage = () => {

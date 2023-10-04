@@ -1,13 +1,12 @@
 import router from './router/index'
 //路由守卫
 router.beforeEach((to, from, next) => {
-  let permissions = localStorage.getItem('permissions')
-  let token = localStorage.getItem('token')
+  let token = JSON.parse(localStorage.getItem('login') as string)?.token
   let fullPath = to.fullPath
-  if (fullPath.startsWith('/mis') && fullPath != '/mis/login') {
-    if (permissions == null || permissions == '' || token == null || token == '') {
+  if (fullPath.startsWith('/front') && fullPath != '/front/index') {
+    if (token == null || token == '') {
       console.log('token为空')
-      next({ name: 'MisLogin' })
+      next({ name: 'Front' })
     } else {
       return next()
     }

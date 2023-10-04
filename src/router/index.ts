@@ -27,13 +27,14 @@ const routes: Array<RouteRecordRaw> = [
         name: 'FrontGoodsList',
         component: () => import('@/views/reception/goodsfilter/index.vue')
       },
+
       {
         path: 'customer',
         name: 'FrontGoodsCustomer',
         component: () => import('@/views/reception/customer/index.vue'),
         children: [
           {
-            path: 'Mine',
+            path: 'mine',
             name: 'FrontMine',
             component: () => import('@/views/reception/customer/FrontMine/index.vue')
           },

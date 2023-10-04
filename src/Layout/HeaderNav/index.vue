@@ -11,7 +11,6 @@
             <li>体检预约</li>
             <li>报告查询</li>
             <li>活动热卖</li>
-
             <li>企业专区</li>
           </ul>
         </div>
@@ -31,27 +30,36 @@
         </div>
       </div>
       <div class="user">
-        <div class="avatar" @mousemove="show = true" @mouseleave="show = false">
+        <div class="avatar" @mousemove="showDp = true" @mouseleave="showDp = false" v-if="!show">
           <img :src="photo" alt="" class="image" />
         </div>
-        <DropDown v-if="show" @mousemove="show = true" @mouseleave="show = false"></DropDown>
+        <DropDown
+        
+          v-if="showDp"
+          @mousemove="showDp = true"
+          @mouseleave="showDp = false"
+        ></DropDown>
         <div class="name">
           <span>{{ name }}</span>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import DropDown from '../DropDown/index.vue'
+
 import useLoginStore from '@/stores/modules/login'
 import { storeToRefs } from 'pinia'
+
 const loginStore = useLoginStore()
-const { name, photo } = storeToRefs(loginStore)
+const { name, photo, show } = storeToRefs(loginStore)
 const visible = ref(true)
-const show = ref(false)
+const showDp = ref(false)
+
 </script>
 <style scoped lang="less">
 @import url('./index.less');
