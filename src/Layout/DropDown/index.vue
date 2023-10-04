@@ -7,7 +7,8 @@
         </a>
       </div>
       <div class="right_name">
-        <span>{{ name }}</span>
+        <p>{{ name }}</p>
+        <span class="bind" @click="bind">已绑定</span>
       </div>
     </div>
     <div class="container">
@@ -15,7 +16,7 @@
         <li class="item">
           <a href="" @click.prevent="router.push({ path: '/front/customer/order_list' })">
             <el-icon><List /></el-icon>
-            <span>我的订单</span>
+            <p>我的订单</p>
           </a>
         </li>
         <li class="item">
@@ -33,16 +34,21 @@
 </template>
 <script setup lang="ts">
 import useLoginStore from '@/stores/modules/login'
+
 import { ElMessage } from 'element-plus'
 import { storeToRefs } from 'pinia'
 import router from '@/router/index'
 const loginStore = useLoginStore()
 const { name, photo } = storeToRefs(loginStore)
-
+const emits = defineEmits(['showBind'])
+// const showBindRef = ref<ShowProps>()
 const logout = async () => {
   await loginStore.loginoutAsync(() => {
     ElMessage.success('成功退出')
   })
+}
+const bind = () => {
+  emits('showBind')
 }
 </script>
 <style scoped lang="less">

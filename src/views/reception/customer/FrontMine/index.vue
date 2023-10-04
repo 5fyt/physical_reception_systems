@@ -86,7 +86,6 @@ const getProfile = async () => {
 }
 getProfile()
 const refreshLoad = async () => {
-  console.log('zhixing')
   const { data: result } = await getUserInfo()
   data.info = { ...result }
 }

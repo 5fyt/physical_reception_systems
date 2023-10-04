@@ -34,32 +34,37 @@
           <img :src="photo" alt="" class="image" />
         </div>
         <DropDown
-        
           v-if="showDp"
           @mousemove="showDp = true"
           @mouseleave="showDp = false"
+          @show-bind="showBind"
         ></DropDown>
         <div class="name">
           <span>{{ name }}</span>
         </div>
       </div>
     </div>
+    <RefreshBind ref="showBindRef"></RefreshBind>
   </div>
-
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import DropDown from '../DropDown/index.vue'
-
+import RefreshBind from '@/components/RefreshBind/index.vue'
 import useLoginStore from '@/stores/modules/login'
 import { storeToRefs } from 'pinia'
-
+interface ShowProps {
+  showDialog: () => void
+}
+const showBindRef = ref<ShowProps>()
 const loginStore = useLoginStore()
 const { name, photo, show } = storeToRefs(loginStore)
 const visible = ref(true)
 const showDp = ref(false)
-
+const showBind = () => {
+  showBindRef.value?.showDialog()
+}
 </script>
 <style scoped lang="less">
 @import url('./index.less');

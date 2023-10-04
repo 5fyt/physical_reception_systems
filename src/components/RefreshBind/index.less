@@ -1,0 +1,110 @@
+.login {
+  /deep/ .el-dialog {
+    border-radius: 10px;
+  }
+  /deep/.el-dialog__header {
+    padding: 35px 0px 10px;
+
+    .my-header {
+      display: flex;
+      font-size: 22px;
+      font-weight: normal;
+      justify-content: flex-end;
+      align-items: center;
+      .phone {
+        margin: auto;
+      }
+      .close {
+        margin-right: 10px;
+        font-size: 22px;
+        cursor: pointer;
+      }
+    }
+  }
+  .demo-ruleForm {
+
+    /deep/ .el-input__wrapper {
+      padding: 5px 15px;
+
+      margin-bottom: 15px;
+      .el-input__inner {
+        font-size: 18px;
+        line-height: 18px;
+      }
+    }
+    .imageInput {
+      width: 335px;
+      margin-bottom: 25px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 48px;
+      border: 1px solid #dcdfe6;
+      border-radius: 5px;
+      .InputItem {
+        margin-top: 22px;
+        width: 180px;
+        height: 38px;
+      }
+      .code {
+        display: flex;
+        cursor: pointer;
+        justify-content: flex-end;
+        span {
+          font-size: 16px;
+          margin-right: 10px;
+          color: #4aafa1;
+        }
+      }
+      .imageCode {
+        width: 182px;
+        height: 49px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 10px;
+        // img {
+        //   width: 88px;
+        //   height: 28px;
+        // }
+        span {
+          cursor: pointer;
+          font-size: 16px;
+          color: #4aafa1;
+        }
+      }
+      /deep/ .el-input__wrapper {
+        border: none;
+        box-shadow: 0 0 0 0;
+      }
+      .codeInput {
+        width: 200px;
+        height: 49px;
+        border: none;
+      }
+    }
+    .loginBtn {
+      margin-top: 10px;
+      background-color: #4aaf75;
+      width: 100%;
+      text-align: center;
+      height: 48px;
+      line-height: 48px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 22px;
+    }
+    .footer {
+      p {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 16px;
+        a {
+          cursor: pointer;
+          color: #4aafa1;
+        }
+      }
+    }
+  }
+}
