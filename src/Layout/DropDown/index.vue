@@ -13,9 +13,9 @@
     <div class="container">
       <ul>
         <li class="item">
-          <a href="javascript:;">
+          <a href="" @click.prevent="router.push({ path: '/front/customer/order_list' })">
             <el-icon><List /></el-icon>
-            <span>我的套餐</span>
+            <span>我的订单</span>
           </a>
         </li>
         <li class="item">

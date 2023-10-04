@@ -1,6 +1,6 @@
 import hyRequest from '..'
 
-import type { SendType, loginParams, passwordParams, photoParams } from '../types/login'
+import type { SendType, loginParams, passwordParams,picParams } from '../types/login'
 /**
  * 运营端登入
  * @param data
@@ -42,7 +42,12 @@ export const sendCode = (data: SendType) => {
     data
   })
 }
-export const sendPicCode = (params:any) => {
+/**
+ * 发送图片验证码
+ * @param params height ，width
+ * @returns
+ */
+export const sendPicCode = (params:picParams) => {
   return hyRequest.get({
     url:'/user/generate-image-code',
     params
@@ -62,32 +67,4 @@ export const updatePhone = (data: passwordParams) => {
     data
   })
 }
-/**
- * 更换头像
- * @param data
- * @returns
- */
-export const updatePhoto = (data: photoParams) => {
-  return hyRequest.post({
-    url: `/user/update-photo`,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data
-  })
-}
-/**
- * 上传头像
- * @param data formData 表单数据
- * @param type
- * @returns
- */
-export const loadPhoto = (data: any) => {
-  return hyRequest.post({
-    url: `/user/apply-upload-photo`,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data
-  })
-}
+

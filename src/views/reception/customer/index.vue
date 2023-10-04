@@ -1,6 +1,6 @@
 <template>
   <div class="customer">
-    <el-menu default-active="FrontMine" class="menu" @select="selectHandle">
+    <el-menu :default-active="menuActive || 'FrontMine'" class="menu" @select="selectHandle">
       <el-menu-item index="FrontMine" @click="router.push({ name: 'FrontMine' })">
         <el-icon>
           <User />
@@ -36,11 +36,21 @@
 </template>
 <script setup lang="ts">
 import router from '@/router'
+import { watch, ref } from 'vue'
+import { useRoute } from 'vue-router'
+const menuActive = ref<any>('')
+const route = useRoute()
 const selectHandle = () => {}
+watch(
+  () => route.name,
+  (newValue, oldValue) => {
+    menuActive.value = newValue
+  },
+  { deep: true, immediate: true }
+)
 </script>
 <style lang="less" scope>
 .customer {
- 
   margin-top: 30px;
   display: flex;
   justify-content: space-between;

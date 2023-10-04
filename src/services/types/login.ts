@@ -6,13 +6,15 @@ export type SendType = {
   phone: string
   key: string
 }
+export type picParams={
+  height:number
+  width:number
+}
 export type passwordParams = {
   oldPassword: string
   newPassword: string
 }
-export type photoParams = {
-  path: string
-}
+
 export type codeParams = {
   phone: string
   width: string
