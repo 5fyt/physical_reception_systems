@@ -1,5 +1,5 @@
 import hyRequest from '..'
-import type { photoParams, phoneParams } from '../types/user'
+import type { photoParams, phoneParams,profileParams } from '../types/user'
 
 /**
  *获取用户个人信息

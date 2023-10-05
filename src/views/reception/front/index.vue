@@ -3,7 +3,7 @@
   <goods-list></goods-list>
 </template>
 <script setup lang="ts">
-import GoodsList from '@/components/baseUI/GoodsList/index.vue'
+import GoodsList from '@/views/reception/front/GoodsList/index.vue'
 import BannerW from './banner/index.vue'
 </script>
 <style lang="less" scope>

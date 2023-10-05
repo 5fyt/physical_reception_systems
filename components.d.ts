@@ -41,6 +41,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     GoodsList: typeof import('./src/components/baseUI/GoodsList/index.vue')['default']
+    ItemList: typeof import('./src/components/baseUI/ItemList/index.vue')['default']
     RefreshBind: typeof import('./src/components/RefreshBind/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
