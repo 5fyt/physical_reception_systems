@@ -9,7 +9,7 @@
       <div class="right_name">
         <p>{{ name }}</p>
         <span class="bind" @click="bind" v-if="bindVisible">已绑定</span>
-        <span class="prebind" @click="bind" v-if="!bindVisible">未绑定</span>
+        <span class="prebind" @click="bind" v-if="!bindVisible">去绑定</span>
       </div>
     </div>
     <div class="container">

@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <RefreshBind ref="showBindRef"></RefreshBind>
+    <RefreshBind ref="showBindRef" @bd-show="bdShow"></RefreshBind>
   </div>
 </template>
 
@@ -66,6 +66,9 @@ const showDp = ref(false)
 const bindshow = ref(false)
 const showBind = () => {
   showBindRef.value?.showDialog()
+}
+//绑定成功后，将未绑定改成已绑定
+const bdShow = () => {
   bindshow.value = true
 }
 </script>

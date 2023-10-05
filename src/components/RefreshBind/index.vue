@@ -74,11 +74,10 @@ import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import { sendPicCode, sendCode } from '@/services/api/login'
 import { updatePhone } from '@/services/api/user'
-import useLoginStore from '@/stores/modules/login'
-
+const emits = defineEmits(['bdShow'])
 //110 28
 const ruleFormRef = ref<FormInstance>()
-const loginStore = useLoginStore()
+
 const ruleForm = reactive({
   visible: false,
   phone: '',
@@ -187,9 +186,11 @@ const login = async () => {
       code: ruleForm.code
     }
     // await loginStore.loginAsync(data)
-    const { code, data: result } = await updatePhone(data)
+    const { code } = await updatePhone(data)
     if (code === 200) {
+      emits('bdShow')
       ElMessage.success('绑定成功')
+
       ruleForm.code = ''
       ruleForm.phone = ''
       ruleForm.imageCode = ''
