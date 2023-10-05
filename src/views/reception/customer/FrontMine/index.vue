@@ -62,9 +62,11 @@
 import { getUserInfo } from '@/services/api/user'
 import UserUpdate from './UserUpdate/index.vue'
 import { reactive, ref } from 'vue'
+import useLoginStore from '@/stores/modules/login'
 interface ShowProps {
   show: () => void
 }
+const loginStore = useLoginStore()
 const data = reactive({
   info: {
     name: '',
@@ -85,9 +87,10 @@ const getProfile = async () => {
   }
 }
 getProfile()
-const refreshLoad = async () => {
+const refreshLoad = async (type: string) => {
   const { data: result } = await getUserInfo()
   data.info = { ...result }
+  loginStore.updateProfile(result, type)
 }
 const updateHandle = () => {
   showRef.value?.show()

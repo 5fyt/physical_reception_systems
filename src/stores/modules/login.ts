@@ -25,6 +25,16 @@ const useLoginStore = defineStore('login', {
       }
       this.show = true
       localStorage.removeItem('login')
+    },
+    updateProfile(data: any, type: string = 'all') {
+      if (type === 'photo') {
+        this.photo = data?.photo
+      } else if (type === 'user') {
+        this.name = data?.name
+      } else {
+        this.photo = data?.photo
+        this.name = data?.name
+      }
     }
   },
   persist: {

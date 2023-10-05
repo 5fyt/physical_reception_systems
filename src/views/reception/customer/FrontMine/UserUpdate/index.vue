@@ -35,16 +35,20 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import type { setMapStoreSuffix } from 'pinia'
 import { loadPhoto, updatePhoto, updateProfile } from '@/services/api/user'
 import { ElMessage } from 'element-plus'
 import axios from 'axios'
-import type { UploadProps } from 'element-plus'
+import type { UploadProps, UploadRawFile } from 'element-plus'
 const emits = defineEmits(['refreshLoad'])
+type InfoType = {
+  url: string
+  raw: UploadRawFile | undefined
+  path: string
+}
 const imageUrl = ref('')
 const suffix = ref('')
 const visible = ref(false)
-const loadInfo = reactive({
+const loadInfo = reactive<InfoType>({
   url: '',
   raw: undefined,
   path: ''
@@ -64,7 +68,10 @@ const confirmHandle = async () => {
   if (imageUrl.value && !form.gender && !form.name) {
     const { code } = await updatePhoto({ path: loadInfo.path })
     if (code === 200) {
-      emits('refreshLoad')
+      // const { photo, ...other } = JSON.parse(localStorage.getItem('login') as string)
+      // console.log(data)
+      // localStorage.setItem('login', JSON.stringify({ photo: data, ...other }))
+      emits('refreshLoad', 'photo')
       ElMessage.success('上传头像成功')
     }
   } else if (imageUrl.value && form.gender && form.name) {
@@ -72,22 +79,21 @@ const confirmHandle = async () => {
     await updatePhoto({ path: loadInfo.path })
     const { code } = await updateProfile(data)
     if (code === 200) {
-      ElMessage.success('修改用户信息成功')
       emits('refreshLoad')
+      ElMessage.success('修改用户信息成功')
       visible.value = false
     }
   } else {
     const data = { ...form }
     const { code } = await updateProfile(data)
     if (code === 200) {
+      emits('refreshLoad', 'user')
       ElMessage.success('修改信息成功')
-      emits('refreshLoad')
     }
   }
 }
 const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
   imageUrl.value = URL.createObjectURL(uploadFile.raw!)
-
 }
 const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
   if (uploadFile.status === 'ready') {
