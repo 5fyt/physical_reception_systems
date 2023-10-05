@@ -2,12 +2,15 @@
   <div class="header_container">
     <div class="header">
       <div class="left">
-        <div class="logo-container">
+        <div class="logo-container" v-if="!indexShow">
           <img src="../../assets/front/index/logo.png" class="logo" />
         </div>
         <div class="tabs">
           <ul>
-            <li class="index">首页</li>
+            <li class="index" v-if="indexShow" @click="router.push({ name: 'FrontIndex' })">
+              宜检首页
+            </li>
+            <li class="index" v-else>首页</li>
             <li>体检预约</li>
             <li>报告查询</li>
             <li>活动热卖</li>
@@ -50,20 +53,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import DropDown from '../DropDown/index.vue'
 import RefreshBind from '@/components/RefreshBind/index.vue'
 import useLoginStore from '@/stores/modules/login'
 import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
 interface ShowProps {
   showDialog: () => void
 }
+const route = useRoute()
+const router = useRouter()
 const showBindRef = ref<ShowProps>()
 const loginStore = useLoginStore()
 const { name, photo, show } = storeToRefs(loginStore)
 const visible = ref(true)
 const showDp = ref(false)
 const bindshow = ref(false)
+const indexShow = ref(false)
 const showBind = () => {
   showBindRef.value?.showDialog()
 }
@@ -71,6 +78,20 @@ const showBind = () => {
 const bdShow = () => {
   bindshow.value = true
 }
+watch(
+  () => route.name,
+  (newValue, oldValue) => {
+    if (newValue !== 'FrontIndex') {
+      indexShow.value = true
+    } else {
+      indexShow.value = false
+    }
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 </script>
 <style scoped lang="less">
 @import url('./index.less');
