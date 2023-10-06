@@ -7,7 +7,7 @@
       <!-- key 值保证点击切换路由时，加载的是不同路由，以便加载出重复的缓存内容，二级路由  -->
       <router-view :key="(router.currentRoute.value.name as string)"></router-view>
     </div>
-    <FooterBar v-if="visible"></FooterBar>
+    <FooterBar></FooterBar>
   </div>
 </template>
 <script setup lang="ts">
@@ -21,9 +21,6 @@ import { storeToRefs } from 'pinia'
 const loginStore = useLoginStore()
 const { show } = storeToRefs(loginStore)
 
-const visible = computed(() => {
-  return router.currentRoute.value.name === 'FrontIndex' ? true : false
-})
 </script>
 <style scope>
 .layout {

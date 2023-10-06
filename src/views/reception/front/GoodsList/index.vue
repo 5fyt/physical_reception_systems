@@ -16,8 +16,9 @@
 import { reactive, ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { getGoodsTypes, getGoodsLists } from '@/services/api/goods'
-
 import ItemList from '@/components/baseUI/ItemList/index.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const goodsList = reactive<any>({
   list: []
 })
@@ -34,13 +35,13 @@ const getGoodsList = async () => {
     const { data } = await getGoodsLists(item.sort, { count: 8 })
     obj = { title: item.name, part: data.goodsList }
     newArr.push(obj)
-    console.log(newArr)
     goodsList.list = [...newArr]
   }
 }
 getGoodsList()
-const moreHandle = () => {}
-const buyHandle = () => {}
+const moreHandle = () => {
+  router.push({name:'FrontGoodsList'})
+}
 </script>
 <style lang="less">
 @import url('./index.less');
