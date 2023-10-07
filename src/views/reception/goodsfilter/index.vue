@@ -8,7 +8,7 @@
     </div>
     <SearchRow></SearchRow>
     <div class="goods_card">
-      <div class="goods_left">
+      <div class="goods_left" v-infinite-scroll="load">
         <div class="top_title">
           <div class="left">
             <el-radio-group v-model="radio" @change="selectHandler">
@@ -33,17 +33,24 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { filterArr } from '@/global/constant/goodsfilter/index'
 import Item from '@/global/constant/goodsList/index'
 import ItemList from '@/components/baseUI/ItemList/index.vue'
 import SearchRow from './SearchRow/index.vue'
 
 const radio = ref('最新')
+const data=reactive({
+  pass:0,
+  size:10,
+  itemList:[]
+})
 const changeHandler = (value: any) => {
   console.log(value)
 }
 const selectHandler = (value:any) => {
   console.log('value',value)
+}
+const load=()=>{
+  console.log('华东了')
 }
 const selectPrice = () => {}
 </script>

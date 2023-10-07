@@ -4,7 +4,7 @@
     <li class="item" v-for="one in item" v-else>
       <div class="card">
         <img :src="one.image" />
-        <h4>{{ one.title }}</h4>
+        <h4>{{ one.name }}</h4>
         <el-tooltip class="box-item" effect="dark" placement="top">
           <template #content>
             <div style="width: 260px">{{ one.description }}</div>
