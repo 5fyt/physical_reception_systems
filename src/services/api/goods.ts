@@ -21,3 +21,17 @@ export const getGoodsLists = (sort: number, params: { count: number }) => {
     params
   })
 }
+/**
+ *商品筛选列表
+ * @param data
+ * @returns
+ */
+export const filterSearch = (data: any) => {
+  return hyRequest.post({
+    url: '/goods/search',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data
+  })
+}

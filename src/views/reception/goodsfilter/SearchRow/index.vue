@@ -42,6 +42,7 @@ type TagType =
   | {
       name: string
       value: number
+      id?:number
     }
   | undefined
 type TypeArr<T> = {
@@ -49,6 +50,7 @@ type TypeArr<T> = {
   priceArr: T[]
   genderArr: T[]
 }
+
 const type = ref('')
 const gender = ref('')
 const price = ref('')
@@ -58,18 +60,15 @@ const arr = reactive<TypeArr<TagType>>({
   genderArr: []
 })
 const tags = ref<any[]>([])
-/**
- * [{name:'',value:1},{name:'',value:2},{name:'',value:2}]
- */
-
+const emits = defineEmits(['typeHandle', 'priceHandle', 'genderHandle'])
 const changeType = (value: any) => {
   arr.typeArr = typeData
     .map((item) => {
       if (value === item.name) {
-        return { name: value, value: 1 }
+        return { name: value, value: 1 ,id:item.value}
       }
     })
-    .filter((item) => item)
+    .filter((item) => item !== undefined)
   if (tags.value.length <= 0 && arr.typeArr.length > 0) {
     tags.value = [...arr.typeArr]
   } else if (tags.value.length === 1 && arr.genderArr.length > 0 && arr.priceArr.length <= 0) {
@@ -77,6 +76,7 @@ const changeType = (value: any) => {
   } else if (tags.value.length === 1 && arr.genderArr.length <= 0) {
     tags.value = [...tags.value, ...arr.typeArr]
   } else if (tags.value.length === 2 && arr.genderArr.length > 0 && arr.priceArr.length > 0) {
+    console.log('11')
     tags.value = [...tags.value, ...arr.typeArr]
   } else if (tags.value.length > 2 && tags.value[0].value === 1) {
     tags.value = tags.value.filter((item) => item.value !== 1)
@@ -87,8 +87,8 @@ const changeType = (value: any) => {
   } else if (tags.value.length > 2 && tags.value[1].value === 1) {
     tags.value = tags.value.filter((item) => item.value !== 1)
     tags.value = [tags.value[0], ...arr.typeArr, tags.value[1]]
-    console.log(tags.value)
   }
+  emits('typeHandle', { name: arr.typeArr[0]?.id, value: 1 })
 }
 const changeGender = (value: any) => {
   arr.genderArr = genderData
@@ -97,7 +97,7 @@ const changeGender = (value: any) => {
         return { name: value, value: 2 }
       }
     })
-    .filter((item) => item)
+    .filter((item) => item !== undefined)
   if (tags.value.length <= 0 && arr.genderArr.length > 0) {
     tags.value = [...arr.genderArr]
   } else if (tags.value.length === 1 && arr.typeArr.length > 0) {
@@ -114,18 +114,13 @@ const changeGender = (value: any) => {
     tags.value = [...tags.value, ...arr.genderArr]
   } else if (tags.value.length > 2 && tags.value[1].value === 2) {
     tags.value = tags.value.filter((item) => item.value !== 2)
-    console.log(tags.value)
     tags.value = [tags.value[0], ...arr.genderArr, tags.value[1]]
   }
+  emits('genderHandle', { name: gender.value, value: 2 })
 }
 const changePrice = (value: any) => {
-  arr.priceArr = priceData
-    .map((item) => {
-      if (value === item.name) {
-        return { name: value, value: 3 }
-      }
-    })
-    .filter((item) => item)
+  const prices = priceData.find((item) => item.name === value)
+  arr.priceArr = [prices]
   if (tags.value.length <= 0 && arr.priceArr.length > 0) {
     tags.value = [...arr.priceArr]
   } else if (tags.value.length == 2 && arr.priceArr.length > 0) {
@@ -145,6 +140,7 @@ const changePrice = (value: any) => {
     console.log(tags.value)
     tags.value = [tags.value[0], ...arr.priceArr, tags.value[1]]
   }
+  emits('priceHandle', { name: price.value, value: 3 })
 }
 const closeHandle = (id: number | undefined) => {
   tags.value = tags.value.filter((item) => item?.value !== id)
