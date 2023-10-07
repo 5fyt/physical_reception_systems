@@ -6,29 +6,7 @@
         <el-breadcrumb-item>体检套餐列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="search-rows">
-      <template v-for="(item, index) in filterArray" :key="index">
-        <el-row :gutter="0" class="row">
-          <el-col :span="2"
-            ><span class="label">{{ item.title }}</span></el-col
-          >
-          <el-radio-group v-model="item.active" size="large" @change="changeHandler(item.title)">
-            <template v-for="(one, index) in item.data" :key="index">
-              <el-radio-button :label="one.name" />
-            </template>
-          </el-radio-group>
-        </el-row>
-      </template>
-    </div>
-    <div class="close_tag">
-      <p>
-        入职体检<el-icon class="icon"><Close /></el-icon>
-      </p>
-      <p>
-        入职体检<el-icon class="icon"><Close /></el-icon>
-      </p>
-      <a href="">清除</a>
-    </div>
+    <SearchRow></SearchRow>
     <div class="goods_card">
       <div class="goods_left">
         <div class="top_title">
@@ -55,20 +33,18 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import filterArr from '@/global/constant/goodsfilter/index'
+import { filterArr } from '@/global/constant/goodsfilter/index'
 import Item from '@/global/constant/goodsList/index'
 import ItemList from '@/components/baseUI/ItemList/index.vue'
-interface FilterItem {
-  title: string
-  active: string
-  data: { name: string; value?: number }[]
-}
-const filterArray = reactive<FilterItem[]>(filterArr)
+import SearchRow from './SearchRow/index.vue'
+
 const radio = ref('最新')
 const changeHandler = (value: any) => {
   console.log(value)
 }
-const selectHandler = () => {}
+const selectHandler = (value:any) => {
+  console.log('value',value)
+}
 const selectPrice = () => {}
 </script>
 <style lang="less" scope>

@@ -1,0 +1,162 @@
+<template>
+  <div class="search-rows">
+    <el-row :gutter="0" class="row">
+      <el-col :span="2"><span class="label">套餐类型</span></el-col>
+      <el-radio-group v-model="type" size="large" @change="changeType">
+        <template v-for="(one, index) in typeData" :key="index">
+          <el-radio-button :label="one.name" />
+        </template>
+      </el-radio-group>
+    </el-row>
+    <el-row :gutter="0" class="row">
+      <el-col :span="2"><span class="label">适用人群</span></el-col>
+      <el-radio-group v-model="gender" size="large" @change="changeGender">
+        <template v-for="(one, index) in genderData" :key="index">
+          <el-radio-button :label="one.name" />
+        </template>
+        <!-- <el-radio-button label="女性" /> -->
+      </el-radio-group>
+    </el-row>
+    <el-row :gutter="0" class="row">
+      <el-col :span="2"><span class="label">套餐价格</span></el-col>
+      <el-radio-group v-model="price" size="large" @change="changePrice">
+        <template v-for="(one, index) in priceData" :key="index">
+          <el-radio-button :label="one.name" />
+        </template> </el-radio-group
+    ></el-row>
+  </div>
+
+  <div class="close_tag">
+    <template v-for="(item, index) in tags" :key="index">
+      <p>
+        {{ item?.name }}<el-icon class="icon" @click="closeHandle(item?.value)"><Close /></el-icon>
+      </p>
+    </template>
+    <a href="" @click="clear" v-if="tags?.length">清除</a>
+  </div>
+</template>
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import { typeData, genderData, priceData } from '@/global/constant/goodsfilter/index'
+type TagType =
+  | {
+      name: string
+      value: number
+    }
+  | undefined
+type TypeArr<T> = {
+  typeArr: T[]
+  priceArr: T[]
+  genderArr: T[]
+}
+const type = ref('')
+const gender = ref('')
+const price = ref('')
+const arr = reactive<TypeArr<TagType>>({
+  typeArr: [],
+  priceArr: [],
+  genderArr: []
+})
+const tags = ref<any[]>([])
+/**
+ * [{name:'',value:1},{name:'',value:2},{name:'',value:2}]
+ */
+
+const changeType = (value: any) => {
+  arr.typeArr = typeData
+    .map((item) => {
+      if (value === item.name) {
+        return { name: value, value: 1 }
+      }
+    })
+    .filter((item) => item)
+  if (tags.value.length <= 0 && arr.typeArr.length > 0) {
+    tags.value = [...arr.typeArr]
+  } else if (tags.value.length === 1 && arr.genderArr.length > 0 && arr.priceArr.length <= 0) {
+    tags.value = [...arr.genderArr, ...arr.typeArr]
+  } else if (tags.value.length === 1 && arr.genderArr.length <= 0) {
+    tags.value = [...tags.value, ...arr.typeArr]
+  } else if (tags.value.length === 2 && arr.genderArr.length > 0 && arr.priceArr.length > 0) {
+    tags.value = [...tags.value, ...arr.typeArr]
+  } else if (tags.value.length > 2 && tags.value[0].value === 1) {
+    tags.value = tags.value.filter((item) => item.value !== 1)
+    tags.value = [...arr.typeArr, ...tags.value]
+  } else if (tags.value.length > 2 && tags.value[0].value !== 1 && tags.value[2].value === 1) {
+    tags.value = tags.value.filter((item) => item.value !== 1)
+    tags.value = [...tags.value, ...arr.typeArr]
+  } else if (tags.value.length > 2 && tags.value[1].value === 1) {
+    tags.value = tags.value.filter((item) => item.value !== 1)
+    tags.value = [tags.value[0], ...arr.typeArr, tags.value[1]]
+    console.log(tags.value)
+  }
+}
+const changeGender = (value: any) => {
+  arr.genderArr = genderData
+    .map((item) => {
+      if (value === item.name) {
+        return { name: value, value: 2 }
+      }
+    })
+    .filter((item) => item)
+  if (tags.value.length <= 0 && arr.genderArr.length > 0) {
+    tags.value = [...arr.genderArr]
+  } else if (tags.value.length === 1 && arr.typeArr.length > 0) {
+    tags.value = [...tags.value, ...arr.genderArr]
+  } else if (tags.value.length === 1 && arr.typeArr.length <= 0) {
+    tags.value = [...tags.value, ...arr.genderArr]
+  } else if (tags.value.length === 2 && arr.genderArr.length > 0) {
+    tags.value = [...tags.value, ...arr.genderArr]
+  } else if (tags.value.length > 2 && tags.value[0].value === 2) {
+    tags.value = tags.value.filter((item) => item.value !== 2)
+    tags.value = [...arr.genderArr, ...tags.value]
+  } else if (tags.value.length > 2 && tags.value[2].value === 2) {
+    tags.value = tags.value.filter((item) => item.value !== 2)
+    tags.value = [...tags.value, ...arr.genderArr]
+  } else if (tags.value.length > 2 && tags.value[1].value === 2) {
+    tags.value = tags.value.filter((item) => item.value !== 2)
+    console.log(tags.value)
+    tags.value = [tags.value[0], ...arr.genderArr, tags.value[1]]
+  }
+}
+const changePrice = (value: any) => {
+  arr.priceArr = priceData
+    .map((item) => {
+      if (value === item.name) {
+        return { name: value, value: 3 }
+      }
+    })
+    .filter((item) => item)
+  if (tags.value.length <= 0 && arr.priceArr.length > 0) {
+    tags.value = [...arr.priceArr]
+  } else if (tags.value.length == 2 && arr.priceArr.length > 0) {
+    tags.value = [...tags.value, ...arr.priceArr]
+  } else if (tags.value.length == 1 && arr.priceArr.length > 0 && arr.typeArr.length > 0) {
+    tags.value = [...arr.typeArr, ...arr.priceArr]
+  } else if (tags.value.length == 1 && arr.priceArr.length > 0 && arr.typeArr.length <= 0) {
+    tags.value = [...arr.genderArr, ...arr.priceArr]
+  } else if (tags.value.length > 2 && tags.value[0].value === 3) {
+    tags.value = tags.value.filter((item) => item.value !== 3)
+    tags.value = [...arr.priceArr, ...tags.value]
+  } else if (tags.value.length > 2 && tags.value[2].value === 3) {
+    tags.value = tags.value.filter((item) => item.value !== 3)
+    tags.value = [...tags.value, ...arr.priceArr]
+  } else if (tags.value.length > 2 && tags.value[1].value === 3) {
+    tags.value = tags.value.filter((item) => item.value !== 3)
+    console.log(tags.value)
+    tags.value = [tags.value[0], ...arr.priceArr, tags.value[1]]
+  }
+}
+const closeHandle = (id: number | undefined) => {
+  tags.value = tags.value.filter((item) => item?.value !== id)
+  if (id === 1) {
+    type.value = ''
+  } else if (id === 2) {
+    gender.value = ''
+  } else {
+    price.value = ''
+  }
+}
+const clear = () => {
+  tags.value = []
+}
+</script>
