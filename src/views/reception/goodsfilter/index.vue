@@ -38,11 +38,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 
 import ItemList from '@/components/baseUI/ItemList/index.vue'
 import SearchRow from './SearchRow/index.vue'
 import { filterSearch } from '@/services/api/goods'
+import { useRouter } from 'vue-router'
 
 /**
  * 筛选功能：
@@ -58,6 +59,7 @@ type LoadType = {
   data: object
   itemList: any[]
 }
+const router = useRouter()
 const radio = ref('最新')
 const text = ref('已经见底啦~')
 const svgIcon = ref('sort-default')
@@ -69,6 +71,7 @@ const loadData = reactive<LoadType>({
   itemList: [],
   data: {}
 })
+
 const selectPrice = () => {
   radio.value = ''
   if (svgIcon.value === 'sort-default') {
@@ -139,11 +142,11 @@ const loadList = async (info?: any) => {
   if (loadData.isLast) {
     return
   }
+
   const data = {
     pass: loadData.pass,
     size: loadData.size
   }
-
   const { data: result } = await filterSearch({ ...data, ...info })
   if (loadData.itemList.length > 0 && result?.goodsList.length <= 0) {
     loadData.pass -= 10
@@ -173,6 +176,22 @@ const closeBtn = (value: any) => {
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+watch(
+  () => router.currentRoute.value.query,
+  async (newValue) => {
+    const data = {
+      pass: loadData.pass,
+      size: loadData.size
+    }
+    const { data: result } = await filterSearch({ ...data })
+    loadData.itemList = result.goodsList
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
+
 const load = () => {
   loadData.pass += 10
   loadData.isFlag = true

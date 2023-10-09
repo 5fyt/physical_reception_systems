@@ -24,12 +24,14 @@
             type="text"
             placeholder="请输入关键词..."
             class="input"
+            v-model="goodsName"
             @focus="visible = false"
             @input="visible = false"
             @blur="visible = true"
+            @keydown.enter="search"
           />
           <div class="tips" v-if="visible">套餐 编号</div>
-          <el-icon size="20" class="icon"><Search /></el-icon>
+          <el-icon size="20" class="icon" @click="search"><Search /></el-icon>
         </div>
       </div>
       <div class="user">
@@ -71,12 +73,22 @@ const visible = ref(true)
 const showDp = ref(false)
 const bindshow = ref(false)
 const indexShow = ref(false)
+const goodsName = ref<any>('')
 const showBind = () => {
   showBindRef.value?.showDialog()
 }
 //绑定成功后，将未绑定改成已绑定
 const bdShow = () => {
   bindshow.value = true
+}
+const search = () => {
+  router.push({
+    name: 'FrontGoodsList',
+    query: { keyword: goodsName.value }
+  })
+  setTimeout(() => {
+    goodsName.value = ''
+  }, 1000)
 }
 watch(
   () => route.name,
