@@ -15,8 +15,8 @@
           </p>
         </el-tooltip>
         <p class="price">
-          <span class="current">￥{{ one.currentPrice }}</span>
-          <span class="old">￥{{ one.originalPrice }}</span>
+          <span class="current">￥{{one.currentPrice.replace(/\.(.*\d)([1-9]*)\d+$/, '.$1')  }}</span>
+          <span class="old">￥{{ one.originalPrice.replace(/\.(.*\d)([1-9]*)\d+$/, '.$1') }}</span>
           <span class="sale">已售{{ one.salesVolume }}</span>
         </p>
       </div>

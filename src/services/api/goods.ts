@@ -35,3 +35,12 @@ export const filterSearch = (data: any) => {
     data
   })
 }
+/**
+ * 商品套餐的全部类型
+ * @returns
+ */
+export const getType=()=>{
+  return hyRequest.get({
+    url:'/goods/type'
+  })
+}
