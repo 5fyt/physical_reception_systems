@@ -12,7 +12,7 @@ import 'virtual:svg-icons-register'
 //注册中文
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 //注册权限
-import './permission'
+// import './permission'
 import pinia from './stores'
 const app = createApp(App)
 app.use(ElementPlus, {

@@ -20,11 +20,12 @@ import ItemList from '@/components/baseUI/ItemList/index.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const goodsList = reactive<any>({
-  list: []
+  list: [{}, {}, {}]
 })
 
 const getGoodsList = async () => {
-  if (goodsList.length > 0) {
+  const flag = goodsList.list.some((item: any) => Object.values(item).length > 0)
+  if (flag) {
     return
   }
   const { data } = await getGoodsTypes()
@@ -40,7 +41,7 @@ const getGoodsList = async () => {
 }
 getGoodsList()
 const moreHandle = () => {
-  router.push({name:'FrontGoodsList'})
+  router.push({ name: 'FrontGoodsList' })
 }
 </script>
 <style lang="less">

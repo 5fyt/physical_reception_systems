@@ -1,21 +1,23 @@
 <template>
   <div class="goods-detail">
-    <img :src="data.image" class="cover" />
+    <img :src="data.info.image" class="cover" />
     <div class="property">
-      <h3 class="title">{{ data.title }} {{ data.code }}</h3>
-      <p class="desc">{{ data.description }}</p>
+      <h3 class="title">{{ data.info.name }} {{ data.info.code }}</h3>
+      <p class="desc">{{ data.info.description }}</p>
       <div class="row">
         <label>官网价格：</label>
         <div class="info">
-          <span class="current-price">{{ data.currentPrice }}</span>
-          <span class="initial-price">￥{{ data.initialPrice }}</span>
+          <span class="current-price">{{ data.info.currentPrice }}</span>
+          <span class="initial-price">￥{{ data.info.originalPrice }}</span>
         </div>
       </div>
       <div class="row">
         <label>享有折扣：</label>
         <div class="info">
           <img src="../../../assets/front/goods/discoun.png" class="discount-img" />
-          <span class="discount">{{ data.ruleName != null ? data.ruleName : '无' }}</span>
+          <span class="discount">{{
+            data.info.discountId != null ? data.info.discountId : '无'
+          }}</span>
         </div>
       </div>
       <!--下面的标签是新添加的-->
@@ -25,7 +27,7 @@
       </div>
       <div class="row">
         <label>适用人群：</label>
-        <div class="info">{{ data.type }}</div>
+        <div class="info">{{ data.info.type }}</div>
       </div>
       <div class="row">
         <label>购买数量：</label>
@@ -34,7 +36,7 @@
             v-model="dataForm.number"
             size="small"
             :min="1"
-            :max="10"
+            :max="15"
             @change="handleChange"
           />
         </div>
@@ -59,27 +61,107 @@
     </div>
   </div>
   <GoodsDetail></GoodsDetail>
+  <LoginDialog ref="dialogRef"></LoginDialog>
+  <PayDialog ref="payRef" ></PayDialog>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import { reactive, ref, watch, onMounted } from 'vue'
 import GoodsDetail from '../goods/goodsdetail/index.vue'
-
+import LoginDialog from '@/Layout/logindialog/index.vue'
+import { useGoodsStore } from '@/stores/modules/goods'
+import PayDialog from './PayDialog/index.vue'
+import { getGoodsDetail, getType, getSorts, payApi } from '@/services/api/goods'
+import { ElMessageBox } from 'element-plus'
+interface ShowProps {
+  showDialog: () => void
+}
+const route = useRoute()
+const goodsStore = useGoodsStore()
+const dialogRef = ref<ShowProps>()
+const payRef = ref<ShowProps>()
+const id = ref<string>('')
+const qrcode = ref('')
 const dataForm = reactive({
   number: 0
 })
 const data = reactive({
-  image: '',
-  title: '',
-  code: '',
-  description: '',
-  type: '',
-  initialPrice: 2249.0,
-  currentPrice: 2142.0,
-  ruleName: null
+  info: {
+    image: '',
+    name: '',
+    code: '',
+    description: '',
+    type: '',
+    originalPrice: 0,
+    currentPrice: 0,
+    discountId: null
+  }
 })
 const consultHandle = () => {}
-const createPayment = () => {}
+const createPayment = () => {
+  const token = JSON.parse(localStorage.getItem('login') as string)?.token
+  if (!token) {
+    dialogRef.value?.showDialog()
+  } else {
+    ElMessageBox.confirm('您确定购买该体检套餐?', '提示信息', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(async () => {
+      const dataInfo = {
+        goodsId: id.value,
+        count: dataForm.number
+      }
+      const { data} = await payApi(dataInfo)
+      goodsStore.getId(data)
+
+      payRef.value?.showDialog()
+    })
+  }
+}
+
 const handleChange = () => {}
+onMounted(() => {
+  window.scrollTo(0, 0)
+}),
+  watch(
+    () => route.params.id,
+    async (newValue) => {
+      if (newValue) {
+        id.value = newValue as string
+        const {
+          data: {
+            type,
+            tag,
+            discountId,
+            departmentCheckup,
+            laboratoryCheckup,
+            medicalCheckup,
+            otherCheckup,
+            ...otherInfo
+          }
+        } = await getGoodsDetail(newValue as string)
+        data.info = { ...otherInfo }
+        const {
+          data: { types }
+        } = await getType()
+        types.forEach((item: any) => {
+          if (item.type === type) {
+            data.info.type = item.name
+          }
+        })
+        const {
+          data: { discounts }
+        } = await getSorts()
+        discounts.forEach((item: any) => {
+          if (item.id === discountId) {
+            data.info.discountId = item.name
+          }
+        })
+      }
+    },
+    { deep: true, immediate: true }
+  )
 </script>
 <style lang="less">
 @import url('./index.less');

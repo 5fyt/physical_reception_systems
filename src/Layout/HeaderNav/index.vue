@@ -45,7 +45,7 @@
           @mouseleave="showDp = false"
           @show-bind="showBind"
         ></DropDown>
-        <div class="name">
+        <div class="name" v-if="!show">
           <span>{{ name }}</span>
         </div>
       </div>

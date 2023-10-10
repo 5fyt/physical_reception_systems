@@ -32,12 +32,11 @@ const router = useRouter()
 const props = defineProps({
   item: {
     type: Object,
-    default: true
+    default: {}
   }
 })
 //跳转商品详情页
 const payHandle = (id: string) => {
-
   router.push({
     name: 'FrontGoods',
     params: { id: id }

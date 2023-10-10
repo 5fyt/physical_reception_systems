@@ -11,20 +11,21 @@ const useLoginStore = defineStore('login', {
   }),
   actions: {
     async loginAsync(data: loginParams) {
-      const { data: result } = await login(data)
-      this.token = result.token
-      this.photo = result.photo
-      this.name = result.name
-      this.show = false
+      const { data: result, code } = await login(data)
+      if (code === 200) {
+        this.token = result.token
+        this.photo = result.photo
+        this.name = result.name
+        this.show = false
+      }
     },
     async loginoutAsync(callback: Function) {
-      console.log('sss')
       const { code } = await loginOut()
       if (code === 200) {
         callback()
       }
       this.show = true
-      localStorage.removeItem('login')
+      localStorage.clear()
     },
     updateProfile(data: any, type: string = 'all') {
       if (type === 'photo') {
