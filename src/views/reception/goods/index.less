@@ -1,10 +1,14 @@
 @import url('../../../styles/index.less');
 .goods-detail {
   width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 40px 112px;
   margin-top: 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(7,17,27,0.18);
   display: flex;
+  .el-input-number__decrease{
+    background-color: #fff;
+  }
   .cover {
     width: 380px;
     height: 380px;
@@ -37,7 +41,7 @@
         display: flex;
         .current-price {
           font-size: 30px;
-          color: @fc-23;
+          color: #ff3a00;
           margin-top: -12px;
           &::before {
             content: '￥';
@@ -51,12 +55,12 @@
           margin-left: 10px;
         }
         .discount-img {
-          width: 28px;
+          width: 40px;
           height: auto;
           margin-right: 5px;
         }
         .discount {
-          color: @fc-23;
+          color: #4aaf75;
         }
         .property-icon {
           width: 20px;
@@ -72,31 +76,27 @@
       display: flex;
       margin-top: 25px;
       .consult-btn {
-        border: 1px solid @bc-20;
+        border: 1px solid #4bc58e;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 130px;
         height: 43px;
+        color: #fff;
         border-radius: 3px;
         cursor: pointer;
         user-select: none;
         &:active {
           background-color: #fff7fb;
         }
-        .consult-icon {
-          width: 17px;
-          height: 17px;
-          font-size: 14px;
-          margin-right: 5px;
-        }
+
         span {
-          color: @fc-23;
+          color: #4bc58e;
           font-size: 14px;
         }
       }
       .buy-btn {
-        border: 1px solid @bc-20;
+        border: 1px solid #4bc58e;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -106,7 +106,7 @@
         cursor: pointer;
         user-select: none;
         font-size: 14px;
-        background-color: @btnc-10;
+        background-color: #4bc58e;
         color: #fff;
         margin-left: 15px;
         &:active {
@@ -118,21 +118,21 @@
   .goods-content {
     margin-top: 30px;
     .tag {
-        border-right: solid 1px @bc-1;
-        padding-right: 10px;
-        margin-right: 10px;
-        &:last-of-type {
-            border-right: none;
-            padding-right: 0;
-            margin-right: 0;
-        }
+      border-right: solid 1px @bc-1;
+      padding-right: 10px;
+      margin-right: 10px;
+      &:last-of-type {
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
+      }
     }
     .detail {
-        margin-top: 50px;
+      margin-top: 50px;
     }
-}
+  }
 
-fieldset {
+  fieldset {
     border-top: solid 1px @bc-1;
     border-left: none;
     border-right: none;
@@ -140,50 +140,49 @@ fieldset {
     margin: 0;
     padding: 0;
     legend {
-        text-align: center;
-        font-size: 30px;
-        background-color: @bgc-22;
-        height: 70px;
-        padding: 0 50px;
-        line-height: 70px;
-        border-radius: 35px;
-        color: #fff;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 50px;
-        margin-top: 30px;
+      text-align: center;
+      font-size: 30px;
+      background-color: @bgc-22;
+      height: 70px;
+      padding: 0 50px;
+      line-height: 70px;
+      border-radius: 35px;
+      color: #fff;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 50px;
+      margin-top: 30px;
     }
     .detail-title {
-        color: @fc-26;
-        margin-top: 0;
-        margin-bottom: 20px;
+      color: @fc-26;
+      margin-top: 0;
+      margin-bottom: 20px;
     }
     .detail-table {
-        width: 100%;
+      width: 100%;
+      border: solid 1px @bc-22;
+      border-collapse: collapse;
+      border-spacing: 0;
+      margin-bottom: 35px;
+
+      th {
+        font-size: 14px;
+        line-height: 1.7;
+        padding: 12px 15px;
+        font-weight: normal;
         border: solid 1px @bc-22;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 35px;
-
-        th {
-            font-size: 14px;
-            line-height: 1.7;
-            padding: 12px 15px;
-            font-weight: normal;
-            border: solid 1px @bc-22;
-            background-color: @bgc-31;
-            color: @fc-25;
-            width: 200px;
-        }
-        td {
-            font-size: 14px;
-            line-height: 1.7;
-            padding: 12px 15px;
-            font-weight: normal;
-            border: solid 1px @bc-22;
-            color: @fc-26;
-        }
+        background-color: @bgc-31;
+        color: @fc-25;
+        width: 200px;
+      }
+      td {
+        font-size: 14px;
+        line-height: 1.7;
+        padding: 12px 15px;
+        font-weight: normal;
+        border: solid 1px @bc-22;
+        color: @fc-26;
+      }
     }
-}
-
+  }
 }
