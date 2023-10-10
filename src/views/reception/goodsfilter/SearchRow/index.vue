@@ -77,7 +77,7 @@ const changeType = (value: any) => {
       }
     })
     .filter((item) => item !== undefined)
-
+  const flags = tags.value.some((item, index) => item.value === 1 && index === 0)
   if (
     tags.value.length <= 1 &&
     arr.typeArr.length > 0 &&
@@ -85,13 +85,19 @@ const changeType = (value: any) => {
     arr.genderArr.length <= 0
   ) {
     tags.value = [...arr.typeArr]
-  } else if (flag.flagT && tags.value.length == 2) {
+  } else if (flag.flagT && tags.value.length == 2 && flags) {
     tags.value = [...arr.typeArr, ...arr.genderArr, ...arr.priceArr]
   } else if (tags.value.length === 1 && arr.genderArr.length > 0 && arr.priceArr.length <= 0) {
     tags.value = [...arr.genderArr, ...arr.typeArr]
   } else if (tags.value.length === 1 && arr.genderArr.length <= 0) {
     tags.value = [...tags.value, ...arr.typeArr]
-  } else if (tags.value.length === 2 && arr.genderArr.length > 0 && arr.priceArr.length > 0) {
+  } else if (
+    tags.value.length === 2 &&
+    arr.genderArr.length > 0 &&
+    arr.priceArr.length > 0 &&
+    !flags
+  ) {
+    tags.value = tags.value.filter((item) => item.value !== 1)
     tags.value = [...tags.value, ...arr.typeArr]
   } else if (tags.value.length > 2 && tags.value[0].value === 1) {
     tags.value = tags.value.filter((item) => item.value !== 1)
@@ -113,6 +119,7 @@ const changeGender = (value: any) => {
       }
     })
     .filter((item) => item !== undefined)
+  const flags = tags.value.some((item, index) => item.value === 2 && index === 0)
   if (
     tags.value.length <= 1 &&
     arr.genderArr.length > 0 &&
@@ -120,13 +127,14 @@ const changeGender = (value: any) => {
     arr.typeArr.length <= 0
   ) {
     tags.value = [...arr.genderArr]
-  } else if (flag.flagG && tags.value.length == 2) {
+  } else if (flag.flagG && tags.value.length == 2 && flags) {
     tags.value = [...arr.genderArr, ...arr.typeArr, ...arr.priceArr]
   } else if (tags.value.length === 1 && arr.typeArr.length > 0 && arr.priceArr.length <= 0) {
     tags.value = [...tags.value, ...arr.genderArr]
   } else if (tags.value.length === 1 && arr.typeArr.length <= 0) {
     tags.value = [...tags.value, ...arr.genderArr]
-  } else if (tags.value.length === 2 && arr.genderArr.length > 0) {
+  } else if (tags.value.length === 2 && arr.genderArr.length > 0 && !flags) {
+    tags.value = tags.value.filter((item) => item.value !== 2)
     tags.value = [...tags.value, ...arr.genderArr]
   } else if (tags.value.length > 2 && tags.value[0].value === 2) {
     tags.value = tags.value.filter((item) => item.value !== 2)
@@ -142,6 +150,7 @@ const changeGender = (value: any) => {
 }
 const changePrice = (value: any) => {
   const prices = priceData.find((item) => item.name === value)
+  const flags = tags.value.some((item, index) => item.value === 3 && index === 0)
   arr.priceArr = [prices]
   if (
     tags.value.length <= 1 &&
@@ -150,9 +159,10 @@ const changePrice = (value: any) => {
     arr.genderArr.length <= 0
   ) {
     tags.value = [...arr.priceArr]
-  } else if (tags.value.length == 2 && arr.priceArr.length > 0) {
+  } else if (tags.value.length == 2 && arr.priceArr.length > 0 && !flags) {
+    tags.value = tags.value.filter((item) => item.value !== 3)
     tags.value = [...tags.value, ...arr.priceArr]
-  } else if (flag.flagP && tags.value.length == 2) {
+  } else if (flag.flagP && tags.value.length == 2 && flags) {
     tags.value = [...arr.priceArr, ...arr.genderArr, ...arr.typeArr]
   } else if (tags.value.length == 1 && arr.priceArr.length > 0 && arr.typeArr.length > 0) {
     tags.value = [...arr.typeArr, ...arr.priceArr]
@@ -166,7 +176,7 @@ const changePrice = (value: any) => {
     tags.value = [...tags.value, ...arr.priceArr]
   } else if (tags.value.length > 2 && tags.value[1].value === 3) {
     tags.value = tags.value.filter((item) => item.value !== 3)
-    console.log(tags.value)
+
     tags.value = [tags.value[0], ...arr.priceArr, tags.value[1]]
   }
   emits('priceHandle', { name: price.value, value: 3 })
@@ -191,11 +201,10 @@ const clear = () => {
 }
 const getGoodsType = async () => {
   arr.typeData = typeData
-  const { data } = await getType()
-  arr.typeData = data.types
+  // const { data } = await getType()
+  // arr.typeData = data.types
 }
 watch(type, (newValue, oldValue) => {
-  console.log('执行了')
   if (oldValue !== '') {
     flag.flagT = true
   }

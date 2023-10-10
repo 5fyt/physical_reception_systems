@@ -139,27 +139,26 @@ const genderHandle = (value: any) => {
   arrUtil(value)
 }
 const loadList = async (info?: any) => {
-  if (loadData.isLast) {
-    return
-  }
-
-  const data = {
-    pass: loadData.pass,
-    size: loadData.size
-  }
-  const { data: result } = await filterSearch({ ...data, ...info })
-  if (loadData.itemList.length > 0 && result?.goodsList.length <= 0) {
-    loadData.pass -= 10
-    loadData.isLast = true
-    setTimeout(() => {
-      text.value = ''
-    }, 3000)
-  }
-  if (!loadData.isFlag) {
-    loadData.itemList = result.goodsList
-  } else {
-    loadData.itemList = [...loadData.itemList, ...result?.goodsList]
-  }
+  // if (loadData.isLast) {
+  //   return
+  // }
+  // const data = {
+  //   pass: loadData.pass,
+  //   size: loadData.size
+  // }
+  // const { data: result } = await filterSearch({ ...data, ...info })
+  // if (loadData.itemList.length > 0 && result?.goodsList.length <= 0) {
+  //   loadData.pass -= 10
+  //   loadData.isLast = true
+  //   setTimeout(() => {
+  //     text.value = ''
+  //   }, 3000)
+  // }
+  // if (!loadData.isFlag) {
+  //   loadData.itemList = result.goodsList
+  // } else {
+  //   loadData.itemList = [...loadData.itemList, ...result?.goodsList]
+  // }
 }
 const clearBtn = () => {
   loadList()
@@ -179,12 +178,14 @@ onMounted(() => {
 watch(
   () => router.currentRoute.value.query,
   async (newValue) => {
-    const data = {
+    if(newValue.keyword){
+      const data = {
       pass: loadData.pass,
       size: loadData.size
     }
     const { data: result } = await filterSearch({ ...data })
     loadData.itemList = result.goodsList
+    }
   },
   {
     deep: true,
