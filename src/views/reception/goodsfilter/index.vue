@@ -33,7 +33,7 @@
         <item-list :item="loadData.itemList"></item-list>
         <p class="bottom" v-if="loadData.isLast">{{ text }}</p>
       </div>
-      <div class="goods_notification"></div>
+      <HotGoods></HotGoods>
     </div>
   </div>
 </template>
@@ -42,6 +42,7 @@ import { reactive, ref, onMounted, watch } from 'vue'
 
 import ItemList from '@/components/baseUI/ItemList/index.vue'
 import SearchRow from './SearchRow/index.vue'
+import HotGoods from './HotGoods/index.vue'
 import { filterSearch } from '@/services/api/goods'
 import { useRouter } from 'vue-router'
 
@@ -178,13 +179,13 @@ onMounted(() => {
 watch(
   () => router.currentRoute.value.query,
   async (newValue) => {
-    if(newValue.keyword){
+    if (newValue.keyword) {
       const data = {
-      pass: loadData.pass,
-      size: loadData.size
-    }
-    const { data: result } = await filterSearch({ ...data })
-    loadData.itemList = result.goodsList
+        pass: loadData.pass,
+        size: loadData.size
+      }
+      const { data: result } = await filterSearch({ ...data })
+      loadData.itemList = result.goodsList
     }
   },
   {
