@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+import optimizer from 'vite-plugin-optimizer'
 //配置svg图标
 import path from 'path'
 import viteSvgIcons, { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -13,6 +13,13 @@ import viteSvgIcons, { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 export default defineConfig({
   plugins: [
     vue(),
+    optimizer({
+      child_process: () => ({
+        find: /^(node:)?child_process$/,
+        code: `const child_process = import.meta.glob('child_process'); export { child_process as default }`
+      })
+    }),
+
     AutoImport({
       resolvers: [ElementPlusResolver()]
     }),
