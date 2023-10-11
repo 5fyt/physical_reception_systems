@@ -27,6 +27,10 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useGoodsStore } from '@/stores/modules/goods'
+
+
+const goodsStore = useGoodsStore()
 
 const router = useRouter()
 const props = defineProps({
@@ -37,6 +41,7 @@ const props = defineProps({
 })
 //跳转商品详情页
 const payHandle = (id: string) => {
+  goodsStore.getGoodsId(id)
   router.push({
     name: 'FrontGoods',
     params: { id: id }

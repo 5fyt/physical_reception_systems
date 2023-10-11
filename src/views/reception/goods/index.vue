@@ -81,7 +81,6 @@ const goodsStore = useGoodsStore()
 const dialogRef = ref<ShowProps>()
 const payRef = ref<ShowProps>()
 const id = ref<string>('')
-const qrcode = ref('')
 const dataForm = reactive({
   number: 0
 })

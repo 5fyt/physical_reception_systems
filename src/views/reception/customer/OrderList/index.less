@@ -1,6 +1,18 @@
 @import url('../../../../styles/index.less');
 .card {
   height: 800px;
+  .el-button--primary {
+    background-color: #fff;
+    color: #409eff;
+  }
+  .el-input__wrapper{
+    box-shadow: 0 0 0 1px #51a7fd;
+    .el-input__inner{
+      &::placeholder{
+        color: #409eff;
+      }
+    }
+  }
 }
 .el-form-item {
   margin-right: 15px !important;
@@ -14,6 +26,14 @@
 }
 .order-list {
   min-height: 582px;
+  .el-button--primary {
+    background-color: #fff;
+    color: #409eff;
+  }
+  .el-button--danger {
+    background-color: #fff;
+    color: #f56c6c;
+  }
   .order {
     border: solid 1px @bc-1;
     margin-bottom: 20px;
@@ -122,4 +142,35 @@
 }
 .empty {
   height: 600px;
+}
+.pagination {
+  width: 896px;
+
+  display: flex;
+  align-items: center;
+  .el-pagination {
+    margin: auto;
+  }
+  .el-pager li {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    margin-right: 8px;
+    color: #333;
+    background-color: #f0f2f5;
+    &:hover {
+      background-color: #f0f9eb;
+      color: #fff;
+    }
+  }
+  .el-pager li.is-active {
+    color: #fff;
+    background-color: #67c23a;
+  }
+  .el-pagination button {
+    background-color: #f0f2f5 !important;
+    &:hover {
+      color: #000;
+    }
+  }
 }

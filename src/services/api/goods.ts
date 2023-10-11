@@ -1,5 +1,5 @@
 import hyRequest from '..'
-import type { payParams } from '../types/goods'
+import type { payParams, orderParams } from '../types/goods'
 /**
  *商品套餐分类列表
  * @returns
@@ -83,5 +83,33 @@ export const payApi = (data: payParams) => {
 export const searchPayResult = (id: string) => {
   return hyRequest.get({
     url: `/order/pay-result/${id}`
+  })
+}
+/**
+ * 搜索订单列表
+ * @param data
+ * @returns
+ */
+export const searchOrderLists = (data: orderParams) => {
+  return hyRequest.post({
+    url: '/order/search',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data
+  })
+}
+/**
+ * 退款订单
+ * @param data
+ * @returns
+ */
+export const refundGoods = (data: { orderId: string }) => {
+  return hyRequest.post({
+    url: '/order/refund',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data
   })
 }

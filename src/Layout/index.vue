@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+
 import router from '@/router'
 import NavBar from './NavBar/NavBar.vue'
 import FooterBar from './FooterBar/FooterBar.vue'
@@ -20,7 +20,6 @@ import useLoginStore from '@/stores/modules/login'
 import { storeToRefs } from 'pinia'
 const loginStore = useLoginStore()
 const { show } = storeToRefs(loginStore)
-
 </script>
 <style scope>
 .layout {
@@ -29,5 +28,6 @@ const { show } = storeToRefs(loginStore)
 .main-right {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 }
 </style>
